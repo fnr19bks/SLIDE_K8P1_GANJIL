@@ -2,484 +2,853 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Informatika K8 P1 — Berpikir Komputasional</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/theme/white.css">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --navy:#0B3C5D;
-    --navy-dark:#062a41;
-    --orange:#F2A104;
-    --gold:#FFD166;
-    --tosca:#2EC4B6;
-    --tosca-light:#7FE7DC;
-    --red:#E4572E;
-    --green:#38B000;
-    --bg:#F7F9FB;
-    --text:#12263A;
-  }
+:root{
+  --bg:#08172A; --bg2:#0F2A45;
+  --card:rgba(255,255,255,.07); --line:rgba(52,211,153,.28);
+  --accent:#34D399; --accent2:#FB923C; --accent3:#60A5FA;
+  --pink:#F472B6; --text:#EAF3FC; --muted:#9FB8D4;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html,body{height:100%;}
+body{
+  background:#040C16;
+  font-family:"Segoe UI",Inter,system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+  color:var(--text); overflow:hidden;
+}
+#wrap{position:fixed; inset:0; display:grid; place-items:center;}
 
-  .reveal{font-family:'Open Sans',sans-serif;color:var(--text);}
-  .reveal h1,.reveal h2,.reveal h3{
-    font-family:'Montserrat',sans-serif;
-    color:var(--navy);
-    text-transform:none;
-  }
-  .reveal h1{font-size:44pt;}
-  .reveal h2{font-size:38pt;}
-  .reveal h3{font-size:30pt;}
+/* ============ STAGE 1280x720 ============ */
+#stage{
+  width:1280px; height:720px; position:relative; overflow:hidden;
+  transform-origin:center center;
+  background:
+    radial-gradient(1000px 620px at 10% 6%, rgba(52,211,153,.20), transparent 62%),
+    radial-gradient(900px 600px at 94% 94%, rgba(251,146,60,.18), transparent 62%),
+    radial-gradient(820px 520px at 82% 8%, rgba(96,165,250,.16), transparent 62%),
+    radial-gradient(700px 500px at 20% 92%, rgba(244,114,182,.10), transparent 62%),
+    linear-gradient(160deg,#08172A 0%, #0F2A45 55%, #08172A 100%);
+  font-size:22px;
+}
+#stage::before{
+  content:""; position:absolute; inset:-30%;
+  background:
+    radial-gradient(420px 420px at 25% 35%, rgba(52,211,153,.14), transparent 65%),
+    radial-gradient(460px 460px at 75% 65%, rgba(96,165,250,.12), transparent 65%);
+  animation:aurora 22s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+#stage::after{
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:.35;
+  background-image:linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+                   linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(circle at 50% 45%, #000 20%, transparent 78%);
+  -webkit-mask-image:radial-gradient(circle at 50% 45%, #000 20%, transparent 78%);
+}
+@keyframes aurora{
+  0%{transform:translate3d(-3%,-2%,0) scale(1);}
+  50%{transform:translate3d(3%,2%,0) scale(1.06);}
+  100%{transform:translate3d(-2%,3%,0) scale(1.02);}
+}
 
-  /* Background default untuk slide biasa */
-  .reveal .slides section{
-    background:var(--bg);
-    padding:40px;
-    box-sizing:border-box;
-    height:100%;
-  }
+/* ============ SLIDES ============ */
+.slide{
+  position:absolute; inset:0; padding:46px 64px 84px 64px;
+  opacity:0; visibility:hidden; z-index:2;
+  display:flex; flex-direction:column;
+  transition:opacity .4s ease;
+}
+.slide.active{opacity:1; visibility:visible; z-index:3;}
 
-  .reveal ul{font-size:24pt;line-height:1.5;}
-  .reveal li{margin-bottom:12px;}
-  .reveal .slide-number{background:var(--navy);color:#fff;}
+/* transisi kreatif */
+.slide.active.tx0{animation:tSlideL .62s cubic-bezier(.18,.8,.28,1) both;}
+.slide.active.tx1{animation:tZoom .58s cubic-bezier(.18,.8,.28,1) both;}
+.slide.active.tx2{animation:tRise .60s cubic-bezier(.18,.8,.28,1) both;}
+.slide.active.tx3{animation:tFlip .66s cubic-bezier(.2,.75,.3,1) both;}
+.slide.active.tx4{animation:tSlideR .62s cubic-bezier(.18,.8,.28,1) both;}
+.slide.active.tx5{animation:tBlur .62s ease both;}
+.slide.active.tx6{animation:tRot .62s cubic-bezier(.18,.8,.28,1) both;}
+.slide.active.tx7{animation:tDrop .62s cubic-bezier(.18,.8,.28,1) both;}
 
-  .header-bar{
-    position:absolute;top:0;left:0;right:0;height:14px;
-    background:linear-gradient(90deg,var(--navy),var(--tosca),var(--orange));
-  }
+@keyframes tSlideL{from{opacity:0;transform:translateX(90px) scale(.97);}to{opacity:1;transform:none;}}
+@keyframes tSlideR{from{opacity:0;transform:translateX(-90px) scale(.97);}to{opacity:1;transform:none;}}
+@keyframes tZoom{from{opacity:0;transform:scale(.86);}to{opacity:1;transform:scale(1);}}
+@keyframes tRise{from{opacity:0;transform:translateY(70px);}to{opacity:1;transform:none;}}
+@keyframes tFlip{from{opacity:0;transform:perspective(1400px) rotateY(-16deg) translateZ(-90px);}to{opacity:1;transform:none;}}
+@keyframes tBlur{from{opacity:0;filter:blur(16px);transform:scale(1.05);}to{opacity:1;filter:blur(0);transform:none;}}
+@keyframes tRot{from{opacity:0;transform:rotate(-3.2deg) scale(.92);}to{opacity:1;transform:none;}}
+@keyframes tDrop{from{opacity:0;transform:translateY(-70px) rotate(2deg);}to{opacity:1;transform:none;}}
 
-  .badge{
-    display:inline-block;background:var(--orange);color:#fff;
-    padding:6px 16px;border-radius:20px;font-size:18pt;font-weight:600;
-  }
+/* ============ FRAGMEN ============ */
+.f{opacity:0; transform:translateY(18px); transition:opacity .45s ease, transform .5s cubic-bezier(.2,.85,.3,1);}
+.f.show{opacity:1; transform:none;}
+.f.show.d1{transition-delay:.05s;}
+.slide.active .f.show{opacity:1;}
 
-  .card{
-    background:#fff;border-left:8px solid var(--tosca);
-    padding:20px 28px;border-radius:12px;
-    box-shadow:0 4px 14px rgba(0,0,0,.08);text-align:left;
-  }
-  .card.red{border-left-color:var(--red);}
-  .card.green{border-left-color:var(--green);}
+/* ============ TIPOGRAFI ============ */
+.eyebrow{
+  display:inline-block; font-size:14px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--accent); font-weight:800; margin-bottom:8px;
+  padding:6px 14px; border:1px solid var(--line); border-radius:999px;
+  background:rgba(52,211,153,.08);
+}
+h1.title{font-size:52px; line-height:1.06; font-weight:900; letter-spacing:-.5px;}
+h2.title{font-size:40px; line-height:1.12; font-weight:900; letter-spacing:-.4px; margin-bottom:6px;}
+.sub{font-size:21px; color:var(--muted); margin-top:10px; line-height:1.4;}
+.lead{font-size:23px; color:var(--text); line-height:1.5;}
+.grad{
+  background:linear-gradient(100deg,#34D399 0%, #60A5FA 45%, #FB923C 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.hl{color:var(--accent); font-weight:800;}
+.hl2{color:var(--accent2); font-weight:800;}
+.hl3{color:var(--accent3); font-weight:800;}
+.pinkT{color:var(--pink); font-weight:800;}
+.head{margin-bottom:20px;}
 
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px;font-size:22pt;}
-  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;font-size:20pt;}
+/* ============ LIST ============ */
+ul.bullets{list-style:none; display:flex; flex-direction:column; gap:13px;}
+ul.bullets li{position:relative; padding-left:36px; font-size:22px; line-height:1.35;}
+ul.bullets li::before{
+  content:"▸"; position:absolute; left:8px; top:-1px; color:var(--accent);
+  font-weight:900; font-size:22px;
+}
+ul.bullets.gold li::before{content:"★"; color:var(--accent2); font-size:18px; left:6px;}
+ul.bullets.blue li::before{content:"◆"; color:var(--accent3); font-size:15px; left:8px;}
 
-  .pill{
-    background:#fff;border-radius:16px;padding:18px;
-    box-shadow:0 4px 12px rgba(0,0,0,.08);
-  }
+ol.steps{list-style:none; counter-reset:st; display:flex; flex-direction:column; gap:12px;}
+ol.steps li{
+  counter-increment:st; position:relative; padding-left:56px;
+  font-size:21px; line-height:1.35; min-height:38px; display:flex; align-items:center;
+}
+ol.steps li::before{
+  content:counter(st); position:absolute; left:0; top:50%; transform:translateY(-50%);
+  width:38px; height:38px; border-radius:50%;
+  background:linear-gradient(140deg,var(--accent),#0F766E);
+  color:#04241A; font-weight:900; font-size:19px;
+  display:grid; place-items:center;
+  box-shadow:0 0 0 4px rgba(52,211,153,.12);
+}
 
-  .footer{
-    position:absolute;bottom:16px;left:40px;right:40px;
-    display:flex;justify-content:space-between;
-    font-size:16pt;color:#666;
-  }
+/* ============ GRID & CARD ============ */
+.grid{display:grid; gap:18px;}
+.g2{grid-template-columns:repeat(2,1fr);}
+.g3{grid-template-columns:repeat(3,1fr);}
+.g4{grid-template-columns:repeat(4,1fr);}
+.card{
+  background:var(--card); border:1px solid rgba(255,255,255,.10);
+  border-radius:18px; padding:20px 22px;
+  backdrop-filter:blur(6px);
+  position:relative; overflow:hidden;
+  transition:transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+}
+.card::after{
+  content:""; position:absolute; left:0; top:0; bottom:0; width:4px;
+  background:linear-gradient(180deg,var(--accent),transparent);
+}
+.card:hover{transform:translateY(-5px); border-color:var(--line); box-shadow:0 16px 34px rgba(0,0,0,.32);}
+.card h3{font-size:21px; font-weight:800; margin-bottom:8px;}
+.card p{font-size:18px; line-height:1.45; color:var(--muted);}
+.card .ico{font-size:34px; display:block; margin-bottom:8px;}
+.card.gold::after{background:linear-gradient(180deg,var(--accent2),transparent);}
+.card.gold h3{color:var(--accent2);}
+.card.blue::after{background:linear-gradient(180deg,var(--accent3),transparent);}
+.card.blue h3{color:var(--accent3);}
+.card.pink::after{background:linear-gradient(180deg,var(--pink),transparent);}
+.card.pink h3{color:var(--pink);}
 
-  /* ============================================================
-     FIX UTAMA: SLIDE 1 & 18 — specificity dinaikkan + !important
-     ============================================================ */
-  .reveal .slides section.title-slide{
-    display:flex !important;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    height:100%;
-    background:linear-gradient(135deg, #062a41 0%, #0B3C5D 50%, #134f75 100%) !important;
-    color:#FFFFFF;
-    padding:60px 80px;
-  }
+/* ============ CHIP / BADGE ============ */
+.chips{display:flex; flex-wrap:wrap; gap:10px;}
+.chip{
+  display:inline-flex; align-items:center; gap:7px;
+  font-size:15px; font-weight:700; padding:8px 15px; border-radius:999px;
+  background:rgba(52,211,153,.13); color:var(--accent);
+  border:1px solid rgba(52,211,153,.34);
+}
+.chip.orange{background:rgba(251,146,60,.13); color:var(--accent2); border-color:rgba(251,146,60,.36);}
+.chip.blue{background:rgba(96,165,250,.13); color:var(--accent3); border-color:rgba(96,165,250,.36);}
+.chip.pinkc{background:rgba(244,114,182,.13); color:var(--pink); border-color:rgba(244,114,182,.36);}
+.badge{
+  display:inline-block; font-size:14px; font-weight:800; letter-spacing:.1em;
+  text-transform:uppercase; padding:6px 13px; border-radius:8px;
+  background:linear-gradient(120deg,rgba(52,211,153,.22),rgba(96,165,250,.18));
+  border:1px solid var(--line); color:var(--text);
+}
 
-  /* Semua heading di title-slide: warna emas/tosca cerah, BUKAN putih polos */
-  .reveal .slides section.title-slide h1{
-    color:#FFD166 !important;
-    text-shadow:0 3px 12px rgba(0,0,0,.4);
-    margin:10px 0;
-  }
-  .reveal .slides section.title-slide h2{
-    color:#7FE7DC !important;
-    text-shadow:0 2px 8px rgba(0,0,0,.35);
-    margin:8px 0;
-    font-weight:600;
-  }
-  .reveal .slides section.title-slide h3{
-    color:#FFD166 !important;
-  }
+/* ============ CODE ============ */
+.code{
+  font-family:"Consolas","SFMono-Regular",Menlo,monospace;
+  font-size:18px; line-height:1.55;
+  background:rgba(4,14,26,.78);
+  border-left:5px solid var(--accent);
+  border-radius:12px; padding:16px 20px; color:#CDEBFF;
+  white-space:pre; overflow:auto;
+}
+.code.sm{font-size:16px; line-height:1.5; padding:14px 18px;}
+.code b{color:var(--accent2);}
+.code i{color:var(--muted); font-style:normal;}
 
-  .reveal .slides section.title-slide p{
-    color:#F7F9FB !important;
-    text-shadow:0 1px 6px rgba(0,0,0,.3);
-    margin:10px 0;
-  }
+/* ============ FLOW ============ */
+.flow{display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; margin:9px 0;}
+.node{
+  padding:12px 18px; border-radius:14px; font-size:17px; font-weight:800; text-align:center;
+  background:rgba(52,211,153,.13); border:1.5px solid var(--line); color:var(--text);
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.node:hover{transform:translateY(-3px); box-shadow:0 10px 22px rgba(0,0,0,.3);}
+.node.oval{border-radius:999px; background:rgba(96,165,250,.15); border-color:rgba(96,165,250,.5);}
+.node.diamond{
+  width:180px; height:100px; padding:0 26px; border-radius:0; border:none;
+  background:linear-gradient(140deg,rgba(251,146,60,.42),rgba(251,146,60,.16));
+  clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);
+  display:grid; place-items:center; font-size:14px; line-height:1.2;
+  color:#FFE9D6;
+}
+.arrow{color:var(--accent); font-size:24px; font-weight:900;}
+.branchLabel{
+  background:var(--accent2); color:#08172A; font-weight:900; font-size:14px;
+  padding:4px 12px; border-radius:999px;
+}
 
-  /* Aksen kecil: label kuning di atas judul */
-  .reveal .slides section.title-slide .label-top{
-    display:inline-block;
-    background:rgba(255,209,102,.15);
-    border:2px solid #FFD166;
-    color:#FFD166 !important;
-    padding:8px 22px;
-    border-radius:30px;
-    font-family:'Montserrat',sans-serif;
-    font-size:20pt;
-    font-weight:700;
-    letter-spacing:1px;
-    margin-bottom:24px;
-  }
+/* ============ TIMELINE ============ */
+.timeline{display:flex; align-items:flex-start; gap:0; margin-top:10px;}
+.tl{flex:1; position:relative; padding-top:44px; text-align:center;}
+.tl::before{
+  content:""; position:absolute; top:19px; left:0; right:0; height:3px;
+  background:linear-gradient(90deg,rgba(52,211,153,.35),rgba(96,165,250,.35));
+}
+.tl:first-child::before{left:50%;}
+.tl:last-child::before{right:50%;}
+.tl .dot{
+  position:absolute; top:8px; left:50%; transform:translateX(-50%);
+  width:26px; height:26px; border-radius:50%;
+  background:linear-gradient(140deg,var(--accent),#0F766E);
+  border:3px solid #08172A; display:grid; place-items:center;
+  font-size:12px; font-weight:900; color:#04241A;
+}
+.tl h4{font-size:18px; font-weight:800; margin-bottom:5px; color:var(--accent);}
+.tl p{font-size:15px; color:var(--muted); line-height:1.35; padding:0 8px;}
 
-  /* Garis dekoratif */
-  .reveal .slides section.title-slide .divider{
-    width:80px;height:4px;background:#2EC4B6;
-    margin:24px auto;border-radius:2px;
-  }
+/* ============ TABEL ============ */
+table{width:100%; border-collapse:collapse; border-radius:14px; overflow:hidden; font-size:18px;}
+thead th{
+  background:rgba(52,211,153,.18); color:var(--text);
+  text-align:left; padding:13px 16px; font-size:17px; font-weight:800;
+  border-bottom:1px solid var(--line); letter-spacing:.02em;
+}
+tbody td{padding:12px 16px; border-bottom:1px solid rgba(255,255,255,.07); line-height:1.35; vertical-align:top;}
+tbody tr:nth-child(odd){background:rgba(255,255,255,.035);}
+tbody tr:nth-child(even){background:rgba(255,255,255,.012);}
+tbody tr:hover{background:rgba(52,211,153,.09);}
+td.c{text-align:center; font-weight:800; color:var(--accent);}
 
-  .emoji{font-size:48pt;}
-  .timer{font-family:'Montserrat';font-size:64pt;color:var(--orange);font-weight:700;}
+/* ============ BUBBLE ============ */
+.bubble{
+  position:relative; background:rgba(96,165,250,.14);
+  border:1.5px solid rgba(96,165,250,.45); border-radius:20px;
+  padding:22px 26px; font-size:23px; line-height:1.45; color:var(--text);
+  max-width:900px;
+}
+.bubble::after{
+  content:""; position:absolute; left:52px; bottom:-15px;
+  width:0; height:0; border:15px solid transparent;
+  border-top-color:rgba(96,165,250,.45); border-bottom:0;
+}
+.bubble .who{display:block; font-size:15px; font-weight:800; color:var(--accent3); letter-spacing:.14em; text-transform:uppercase; margin-bottom:8px;}
 
-  .reveal .fragment.fade-up{transform:translateY(20px);}
-  .reveal .fragment.fade-up.visible{transform:translateY(0);}
+/* ============ HUD ============ */
+#hud{
+  position:absolute; top:0; left:0; right:0; height:56px; z-index:20;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 22px; pointer-events:none;
+}
+#counter{
+  font-size:15px; font-weight:800; letter-spacing:.12em; color:var(--muted);
+  background:rgba(4,14,26,.55); border:1px solid rgba(255,255,255,.10);
+  padding:7px 14px; border-radius:999px; backdrop-filter:blur(8px);
+}
+#ctrl{display:flex; gap:8px; pointer-events:auto;}
+#ctrl button{
+  width:42px; height:42px; border-radius:12px; cursor:pointer;
+  background:rgba(4,14,26,.6); color:var(--text);
+  border:1px solid rgba(255,255,255,.14); font-size:17px;
+  display:grid; place-items:center; transition:.22s;
+  backdrop-filter:blur(8px);
+}
+#ctrl button:hover{background:var(--accent); color:#04241A; border-color:var(--accent); transform:translateY(-2px);}
+#ctrl button:active{transform:scale(.94);}
+
+#bar{
+  position:absolute; left:0; right:0; bottom:0; height:5px; z-index:20;
+  background:rgba(255,255,255,.07);
+}
+#bar i{
+  display:block; height:100%; width:0%;
+  background:linear-gradient(90deg,var(--accent),var(--accent3),var(--accent2));
+  transition:width .45s cubic-bezier(.2,.8,.3,1);
+  box-shadow:0 0 14px rgba(52,211,153,.6);
+}
+#hint{
+  position:absolute; left:50%; bottom:22px; transform:translateX(-50%);
+  z-index:20; font-size:15px; font-weight:700; color:var(--muted);
+  background:rgba(4,14,26,.6); border:1px solid rgba(255,255,255,.10);
+  padding:8px 18px; border-radius:999px; backdrop-filter:blur(8px);
+  animation:pulseHint 2.2s ease-in-out infinite; transition:opacity .4s;
+}
+#hint.hide{opacity:0; pointer-events:none;}
+@keyframes pulseHint{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-5px);}}
+
+.timeTag{
+  position:absolute; right:26px; bottom:26px; z-index:6;
+  font-size:14px; font-weight:800; color:var(--accent2);
+  background:rgba(251,146,60,.12); border:1px solid rgba(251,146,60,.34);
+  padding:6px 13px; border-radius:999px;
+}
+
+/* ============ COVER ============ */
+.coverWrap{display:grid; grid-template-columns:1.15fr .85fr; gap:40px; flex:1; align-items:center;}
+.coverLeft h1{margin:14px 0 6px;}
+.coverRight{display:flex; flex-direction:column; gap:9px;}
+.meta{
+  display:flex; gap:12px; align-items:baseline;
+  background:rgba(255,255,255,.055); border:1px solid rgba(255,255,255,.09);
+  border-left:4px solid var(--accent); border-radius:12px; padding:9px 14px;
+}
+.meta b{font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); min-width:112px; font-weight:800;}
+.meta span{font-size:16px; color:var(--text); line-height:1.3;}
+.meta.m2{border-left-color:var(--accent2);} .meta.m2 b{color:var(--accent2);}
+.meta.m3{border-left-color:var(--accent3);} .meta.m3 b{color:var(--accent3);}
+.meta.m4{border-left-color:var(--pink);} .meta.m4 b{color:var(--pink);}
+
+/* ============ PENUTUP ============ */
+.closing{flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:22px;}
+.closing h1{font-size:76px; font-weight:900; letter-spacing:-1px;}
+.motiv{
+  font-size:26px; font-weight:700; line-height:1.5; max-width:900px;
+  color:var(--text); font-style:italic;
+}
+.idCard{
+  display:flex; gap:28px; flex-wrap:wrap; justify-content:center;
+  font-size:17px; color:var(--muted);
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.10);
+  padding:14px 26px; border-radius:16px;
+}
+.idCard b{color:var(--accent);}
+
+/* ============ MISC ============ */
+.rowFlex{display:flex; gap:18px; align-items:stretch;}
+.stack{display:flex; flex-direction:column; gap:16px;}
+.bigNum{
+  font-size:52px; font-weight:900; line-height:1;
+  background:linear-gradient(140deg,var(--accent),var(--accent3));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.qBox{
+  background:rgba(96,165,250,.10); border:1px solid rgba(96,165,250,.34);
+  border-radius:16px; padding:16px 20px;
+}
+.qBox h4{font-size:19px; font-weight:800; color:var(--accent3); margin-bottom:8px;}
+.qBox p{font-size:19px; line-height:1.45;}
+.ans{font-size:17px; color:var(--accent2); font-weight:800; margin-top:8px;}
 </style>
 </head>
 <body>
-<div class="reveal">
-<div class="slides">
+<div id="wrap">
+<div id="stage">
 
-<!-- ============ SLIDE 1 (DIPERBAIKI) ============ -->
-<section class="title-slide" data-transition="zoom">
-  <div class="header-bar"></div>
-  <span class="label-top">INFORMATIKA • KELAS 8 • FASE D</span>
-  <h1 style="font-size:52pt;">Berpikir Komputasional</h1>
-  <h2 style="font-size:32pt;font-weight:400;">Memecah Masalah Kompleks</h2>
-  <div class="divider"></div>
-  <p style="font-size:20pt;opacity:.95;margin-top:20px;">
-    Tim MGMP Informatika<br>
-    SMP Negeri 19 Kota Bekasi
-  </p>
-</section>
-
-<!-- SLIDE 2 -->
-<section data-transition="slide">
-  <div class="header-bar"></div>
-  <h2>Tujuan Pembelajaran Hari Ini</h2>
-  <div class="grid4" style="margin-top:40px;">
-    <div class="pill fragment fade-up">🔍<br><b>Identifikasi</b><br>masalah utama</div>
-    <div class="pill fragment fade-up">✂️<br><b>Pecah</b><br>jadi 3 submasalah</div>
-    <div class="pill fragment fade-up">🔗<br><b>Jelaskan</b><br>hubungan antar bagian</div>
-    <div class="pill fragment fade-up">🗺️<br><b>Susun</b><br>peta dekomposisi</div>
-  </div>
-  <p class="fragment fade-up" style="margin-top:40px;font-size:22pt;text-align:center;color:var(--tosca);">✨ Hari ini kita jadi <b>detektif masalah</b>, bukan hakim!</p>
-  <div class="footer"><span>Slide 2</span><span>~2 menit</span></div>
-</section>
-
-<!-- SLIDE 3 -->
-<section data-transition="slide">
-  <div class="header-bar"></div>
-  <h2>Pertanyaan Pemantik</h2>
-  <ul style="margin-top:30px;">
-    <li class="fragment fade-up">Pernah menunggu lama di kantin?</li>
-    <li class="fragment fade-up">Apa penyebab antrean panjang?</li>
-    <li class="fragment fade-up">Apakah hanya karena "murid malas"?</li>
-    <li class="fragment fade-up">Informasi apa yang perlu dicari dulu?</li>
-  </ul>
-  <div class="card fragment fade-up" style="margin-top:30px;background:#fff8e6;">
-    <b>💡 Think-Pair-Share:</b> 30 detik berpikir → 30 detik diskusi pasangan → berbagi!
-  </div>
-  <div class="footer"><span>Slide 3</span><span>~3 menit</span></div>
-</section>
-
-<!-- SLIDE 4 -->
-<section data-transition="slide">
-  <div class="header-bar"></div>
-  <h2>Apa Itu Berpikir Komputasional?</h2>
-  <div class="grid4" style="margin-top:40px;">
-    <div class="pill fragment fade-up" style="border:3px solid var(--orange);background:#fff8e6;">🧩<br><b>Dekomposisi</b><br><small>Pecah masalah</small></div>
-    <div class="pill fragment fade-up">🔁<br><b>Pola</b><br><small>Cari kesamaan</small></div>
-    <div class="pill fragment fade-up">🎯<br><b>Abstraksi</b><br><small>Ambil inti</small></div>
-    <div class="pill fragment fade-up">📋<br><b>Algoritma</b><br><small>Susun langkah</small></div>
-  </div>
-  <p class="fragment fade-up" style="margin-top:40px;font-size:22pt;text-align:center;">Hari ini kita fokus pada <span class="badge">DEKOMPOSISI</span></p>
-  <div class="footer"><span>Slide 4</span><span>~3 menit</span></div>
-</section>
-
-<!-- SLIDE 5 -->
-<section data-transition="convex">
-  <div class="header-bar"></div>
-  <h2>Fokus: Dekomposisi</h2>
-  <div style="display:flex;align-items:center;justify-content:center;gap:40px;margin-top:40px;">
-    <div class="card fragment fade-up" style="font-size:26pt;background:#fff3d6;border-left-color:var(--orange);">😰 MASALAH<br>BESAR</div>
-    <div class="fragment fade-up" style="font-size:48pt;">✂️ →</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-      <div class="pill fragment fade-up">🔹 Bagian 1</div>
-      <div class="pill fragment fade-up">🔹 Bagian 2</div>
-      <div class="pill fragment fade-up">🔹 Bagian 3</div>
-      <div class="pill fragment fade-up">🔹 Bagian 4</div>
+  <!-- ================= SLIDE 1 : COVER ================= -->
+  <section class="slide">
+    <div class="closing">
+      <span class="eyebrow">Informatika • Kelas 8 • Fase D</span>
+      <h1 class="title grad">Berpikir Komputasional</h1>
+      <p class="motiv f">Memecah Masalah Kompleks</p>
+      <div class="idCard f">
+        <span><b>Tim MGMP Informatika</b></span>
+        <span><b>SMP Negeri 19 Kota Bekasi</b></span>
+      </div>
     </div>
-  </div>
-  <p class="fragment fade-up" style="margin-top:40px;font-size:22pt;text-align:center;color:var(--tosca);">🍚 "Makan nasi sepiring tidak sekali suap"</p>
-  <div class="footer"><span>Slide 5</span><span>~3 menit</span></div>
-</section>
+    <div class="timeTag">⏱ 2 menit</div>
+  </section>
 
-<!-- SLIDE 6 -->
-<section data-transition="slide">
-  <div class="header-bar"></div>
-  <h2>Analogi: Piket Kelas</h2>
-  <div style="text-align:center;margin-top:30px;">
-    <div class="pill fragment fade-up" style="display:inline-block;background:var(--navy);color:#fff;font-size:26pt;">🧹 PIKET KELAS</div>
-    <div class="fragment fade-up" style="font-size:36pt;margin:20px 0;">↓</div>
-    <div class="grid4">
-      <div class="pill fragment fade-up">🧹<br>Menyapu</div>
-      <div class="pill fragment fade-up">🪣<br>Mengepel</div>
-      <div class="pill fragment fade-up">🗑️<br>Buang sampah</div>
-      <div class="pill fragment fade-up">📚<br>Merapikan</div>
+  <!-- ================= SLIDE 2 : TUJUAN ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Tujuan Pembelajaran</span>
+      <h2 class="title">Tujuan Pembelajaran Hari Ini</h2>
     </div>
-  </div>
-  <p class="fragment fade-up" style="margin-top:30px;font-size:22pt;text-align:center;color:var(--tosca);">✅ Selesai lebih cepat & rapi!</p>
-  <div class="footer"><span>Slide 6</span><span>~4 menit</span></div>
-</section>
+    <div class="grid g4" style="flex:1; align-content:start;">
+      <div class="card f"><span class="ico">🔍</span><h3>Identifikasi</h3><p>masalah utama</p></div>
+      <div class="card blue f"><span class="ico">✂️</span><h3>Pecah</h3><p>jadi 3 submasalah</p></div>
+      <div class="card gold f"><span class="ico">🔗</span><h3>Jelaskan</h3><p>hubungan antar bagian</p></div>
+      <div class="card pink f"><span class="ico">🗺️</span><h3>Susun</h3><p>peta dekomposisi</p></div>
+    </div>
+    <p class="lead f" style="margin-top:18px; text-align:center;">
+      ✨ Hari ini kita jadi <span class="hl">detektif masalah</span>, bukan hakim!
+    </p>
+    <div class="timeTag">⏱ 2 menit</div>
+  </section>
 
-<!-- SLIDE 7 -->
-<section data-transition="slide">
-  <div class="header-bar"></div>
-  <h2>Kasus: Antrean Kantin Sekolah</h2>
-  <div class="grid2" style="margin-top:20px;">
-    <div>
-      <ul style="font-size:22pt;">
-        <li class="fragment fade-up">Bel istirahat berbunyi bersamaan</li>
-        <li class="fragment fade-up">Memilih makanan di depan etalase</li>
-        <li class="fragment fade-up">Barisan melebar, halangi jalur keluar</li>
-        <li class="fragment fade-up">Pembayaran di satu titik saat ramai</li>
-        <li class="fragment fade-up">Waktu istirahat terbatas</li>
-        <li class="fragment fade-up">Belum ada data waktu tunggu</li>
+  <!-- ================= SLIDE 3 : PERTANYAAN PEMANTIK ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Apersepsi</span>
+      <h2 class="title">Pertanyaan Pemantik</h2>
+    </div>
+    <ul class="bullets" style="flex:1; align-content:start;">
+      <li class="f">Pernah menunggu lama di kantin?</li>
+      <li class="f">Apa penyebab antrean panjang?</li>
+      <li class="f">Apakah hanya karena "murid malas"?</li>
+      <li class="f">Informasi apa yang perlu dicari dulu?</li>
+    </ul>
+    <div class="card gold f" style="margin-top:16px;">
+      <h3>💡 Think-Pair-Share</h3>
+      <p>30 detik berpikir → 30 detik diskusi pasangan → berbagi!</p>
+    </div>
+    <div class="timeTag">⏱ 3 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 4 : APA ITU ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Definisi Konsep Inti</span>
+      <h2 class="title">Apa Itu Berpikir Komputasional?</h2>
+    </div>
+    <div class="grid g4" style="flex:1; align-content:start;">
+      <div class="card gold f" style="border-color:rgba(251,146,60,.55);">
+        <span class="ico">🧩</span><h3>Dekomposisi</h3><p>Pecah masalah</p>
+      </div>
+      <div class="card f"><span class="ico">🔁</span><h3>Pola</h3><p>Cari kesamaan</p></div>
+      <div class="card blue f"><span class="ico">🎯</span><h3>Abstraksi</h3><p>Ambil inti</p></div>
+      <div class="card pink f"><span class="ico">📋</span><h3>Algoritma</h3><p>Susun langkah</p></div>
+    </div>
+    <p class="lead f" style="margin-top:18px; text-align:center;">
+      Hari ini kita fokus pada <span class="badge">DEKOMPOSISI</span>
+    </p>
+    <div class="timeTag">⏱ 3 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 5 : FOKUS DEKOMPOSISI ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Fokus Materi</span>
+      <h2 class="title">Fokus: Dekomposisi</h2>
+    </div>
+    <div class="rowFlex" style="flex:1; align-items:center; justify-content:center;">
+      <div class="card gold f" style="text-align:center; font-size:24px; font-weight:900; padding:26px 24px;">
+        😰 MASALAH<br>BESAR
+      </div>
+      <div class="f" style="font-size:38px; font-weight:900; color:var(--accent2);">✂️ →</div>
+      <div class="grid g2 f" style="flex:1;">
+        <div class="node">🔹 Bagian 1</div>
+        <div class="node">🔹 Bagian 2</div>
+        <div class="node">🔹 Bagian 3</div>
+        <div class="node">🔹 Bagian 4</div>
+      </div>
+    </div>
+    <p class="lead f" style="margin-top:14px; text-align:center;">
+      🍚 "Makan nasi sepiring tidak sekali suap"
+    </p>
+    <div class="timeTag">⏱ 3 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 6 : ANALOGI PIKET ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Analogi</span>
+      <h2 class="title">Analogi: Piket Kelas</h2>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;">
+      <div class="node f" style="font-size:24px; padding:16px 30px; background:rgba(96,165,250,.18); border-color:rgba(96,165,250,.55);">
+        🧹 PIKET KELAS
+      </div>
+      <div class="f" style="font-size:30px; color:var(--accent); font-weight:900;">↓</div>
+      <div class="grid g4 f" style="width:100%;">
+        <div class="node">🧹<br>Menyapu</div>
+        <div class="node">🪣<br>Mengepel</div>
+        <div class="node">🗑️<br>Buang sampah</div>
+        <div class="node">📚<br>Merapikan</div>
+      </div>
+      <p class="lead f" style="color:var(--accent);">✅ Selesai lebih cepat &amp; rapi!</p>
+    </div>
+    <div class="timeTag">⏱ 4 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 7 : KASUS ANTREAN KANTIN ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Studi Kasus</span>
+      <h2 class="title">Kasus: Antrean Kantin Sekolah</h2>
+    </div>
+    <div class="grid g2" style="flex:1; align-content:start;">
+      <ul class="bullets">
+        <li class="f">Bel istirahat berbunyi bersamaan</li>
+        <li class="f">Memilih makanan di depan etalase</li>
+        <li class="f">Barisan melebar, halangi jalur keluar</li>
+        <li class="f">Pembayaran di satu titik saat ramai</li>
+        <li class="f">Waktu istirahat terbatas</li>
+        <li class="f">Belum ada data waktu tunggu</li>
       </ul>
+      <div class="card gold f">
+        <span class="ico">🏫🍽️</span>
+        <h3>Bayangkan kamu paling belakang…</h3>
+        <p>Apa yang kamu rasakan? Apa yang kamu butuhkan?</p>
+      </div>
     </div>
-    <div class="card fragment fade-up" style="background:#fff3d6;">
-      <div class="emoji">🏫🍽️</div>
-      <p style="font-size:22pt;"><b>Bayangkan kamu paling belakang…</b></p>
-      <p style="font-size:20pt;">Apa yang kamu rasakan? Apa yang kamu butuhkan?</p>
+    <div class="timeTag">⏱ 4 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 8 : KARTU MASALAH ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Aturan Main</span>
+      <h2 class="title">Kartu Masalah: Aturan Main</h2>
     </div>
-  </div>
-  <div class="footer"><span>Slide 7</span><span>~4 menit</span></div>
-</section>
-
-<!-- SLIDE 8 -->
-<section data-transition="slide">
-  <div class="header-bar"></div>
-  <h2>Kartu Masalah: Aturan Main</h2>
-  <ul style="font-size:24pt;">
-    <li class="fragment fade-up">Setiap kelompok menerima kartu fakta</li>
-    <li class="fragment fade-up">Kartu berisi informasi kasus</li>
-    <li class="fragment fade-up">Tandai fakta, <b>bukan</b> dugaan</li>
-    <li class="fragment fade-up">Diskusikan bersama kelompok</li>
-    <li class="fragment fade-up">Tulis hasil di LKPD</li>
-  </ul>
-  <div class="card fragment fade-up" style="margin-top:30px;background:#e6f9f7;">
-    <b>⚠️ Ingat:</b> Jangan menambah dugaan seolah-olah fakta!
-  </div>
-  <div class="footer"><span>Slide 8</span><span>~4 menit</span></div>
-</section>
-
-<!-- SLIDE 9 -->
-<section data-transition="slide">
-  <div class="header-bar"></div>
-  <h2>Tugas Kelompok Hari Ini</h2>
-  <div class="grid4" style="margin-top:30px;">
-    <div class="pill fragment fade-up">👥<br><b>3–4 orang</b></div>
-    <div class="pill fragment fade-up">🎭<br><b>Pilih peran</b><br><small>pembaca, pencatat, penyaji</small></div>
-    <div class="pill fragment fade-up">⏱️<br><b>25 menit</b><br><small>diskusi</small></div>
-    <div class="pill fragment fade-up">🗺️<br><b>Hasil:</b><br><small>peta dekomposisi</small></div>
-  </div>
-  <p class="fragment fade-up" style="text-align:center;font-size:26pt;margin-top:40px;color:var(--orange);">Minimal <b>3 submasalah</b> relevan!</p>
-  <div class="footer"><span>Slide 9</span><span>~2 menit</span></div>
-</section>
-
-<!-- SLIDE 10 -->
-<section data-transition="slide">
-  <div class="header-bar"></div>
-  <h2>Cara Membuat Peta Dekomposisi</h2>
-  <ol style="font-size:24pt;">
-    <li class="fragment fade-up">Tulis masalah utama di tengah</li>
-    <li class="fragment fade-up">Pecah jadi 3–4 submasalah</li>
-    <li class="fragment fade-up">Hubungkan dengan garis/panah</li>
-    <li class="fragment fade-up">Beri label yang jelas</li>
-    <li class="fragment fade-up">Pilih 1 prioritas + alasan</li>
-  </ol>
-  <div class="footer"><span>Slide 10</span><span>~4 menit</span></div>
-</section>
-
-<!-- SLIDE 11 -->
-<section data-transition="slide">
-  <div class="header-bar"></div>
-  <h2>Contoh: Peta Antrean Kantin</h2>
-  <div style="text-align:center;margin-top:20px;">
-    <div class="pill fragment fade-up" style="display:inline-block;background:var(--navy);color:#fff;font-size:24pt;">😰 ANTREAN PANJANG & MEMBINGUNGKAN</div>
-    <div class="fragment fade-up" style="font-size:32pt;margin:10px 0;">↓</div>
-    <div class="grid4" style="font-size:18pt;">
-      <div class="pill fragment fade-up">🚪<br><b>Alur ruang</b><br>masuk/keluar</div>
-      <div class="pill fragment fade-up">🍱<br><b>Proses memilih</b><br>info menu</div>
-      <div class="pill fragment fade-up">💳<br><b>Pembayaran</b><br>titik bayar</div>
-      <div class="pill fragment fade-up">⏰<br><b>Waktu</b><br>kedatangan</div>
+    <ul class="bullets" style="flex:1; align-content:start;">
+      <li class="f">Setiap kelompok menerima kartu fakta</li>
+      <li class="f">Kartu berisi informasi kasus</li>
+      <li class="f">Tandai fakta, <span class="hl2">bukan</span> dugaan</li>
+      <li class="f">Diskusikan bersama kelompok</li>
+      <li class="f">Tulis hasil di LKPD</li>
+    </ul>
+    <div class="card gold f" style="margin-top:16px;">
+      <h3>⚠️ Ingat</h3>
+      <p>Jangan menambah dugaan seolah-olah fakta!</p>
     </div>
-    <p class="fragment fade-up" style="margin-top:20px;font-size:20pt;color:var(--tosca);">+ Informasi: tanda antrean, arahan petugas</p>
-  </div>
-  <div class="footer"><span>Slide 11</span><span>~4 menit</span></div>
-</section>
+    <div class="timeTag">⏱ 4 menit</div>
+  </section>
 
-<!-- SLIDE 12 -->
-<section data-transition="slide">
-  <div class="header-bar"></div>
-  <h2>Waktunya Bekerja! 🚀</h2>
-  <div class="grid2" style="margin-top:20px;">
-    <div>
-      <ul style="font-size:22pt;">
-        <li class="fragment fade-up">Diskusi kelompok 25 menit</li>
-        <li class="fragment fade-up">Gambar peta di kertas A3</li>
-        <li class="fragment fade-up">Tulis nama anggota</li>
-        <li class="fragment fade-up">Siapkan presentasi 60–90 detik</li>
-        <li class="fragment fade-up">Periksa: ada tumpang tindih?</li>
+  <!-- ================= SLIDE 9 : TUGAS KELOMPOK ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Kerja Kelompok</span>
+      <h2 class="title">Tugas Kelompok Hari Ini</h2>
+    </div>
+    <div class="grid g4" style="flex:1; align-content:start;">
+      <div class="card f"><span class="ico">👥</span><h3>3–4 orang</h3><p>per kelompok</p></div>
+      <div class="card blue f"><span class="ico">🎭</span><h3>Pilih peran</h3><p>pembaca, pencatat, penyaji</p></div>
+      <div class="card gold f"><span class="ico">⏱️</span><h3>25 menit</h3><p>diskusi</p></div>
+      <div class="card pink f"><span class="ico">🗺️</span><h3>Hasil:</h3><p>peta dekomposisi</p></div>
+    </div>
+    <p class="lead f" style="margin-top:18px; text-align:center; color:var(--accent2);">
+      Minimal <b>3 submasalah</b> relevan!
+    </p>
+    <div class="timeTag">⏱ 2 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 10 : CARA MEMBUAT PETA ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Cara Kerja</span>
+      <h2 class="title">Cara Membuat Peta Dekomposisi</h2>
+    </div>
+    <ol class="steps" style="flex:1; align-content:start;">
+      <li class="f">Tulis masalah utama di tengah</li>
+      <li class="f">Pecah jadi 3–4 submasalah</li>
+      <li class="f">Hubungkan dengan garis/panah</li>
+      <li class="f">Beri label yang jelas</li>
+      <li class="f">Pilih 1 prioritas + alasan</li>
+    </ol>
+    <div class="timeTag">⏱ 4 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 11 : CONTOH PETA ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Contoh</span>
+      <h2 class="title">Contoh: Peta Antrean Kantin</h2>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;">
+      <div class="node f" style="font-size:20px; padding:16px 26px; background:rgba(96,165,250,.18); border-color:rgba(96,165,250,.55);">
+        😰 ANTREAN PANJANG &amp; MEMBINGUNGKAN
+      </div>
+      <div class="f" style="font-size:28px; color:var(--accent); font-weight:900;">↓</div>
+      <div class="grid g4 f" style="width:100%;">
+        <div class="card"><h3>🚪 Alur ruang</h3><p>masuk/keluar</p></div>
+        <div class="card blue"><h3>🍱 Proses memilih</h3><p>info menu</p></div>
+        <div class="card gold"><h3>💳 Pembayaran</h3><p>titik bayar</p></div>
+        <div class="card pink"><h3>⏰ Waktu</h3><p>kedatangan</p></div>
+      </div>
+      <p class="lead f" style="color:var(--accent);">+ Informasi: tanda antrean, arahan petugas</p>
+    </div>
+    <div class="timeTag">⏱ 4 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 12 : WAKTUNYA BEKERJA ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Aktivitas</span>
+      <h2 class="title">Waktunya Bekerja! 🚀</h2>
+    </div>
+    <div class="grid g2" style="flex:1; align-content:start;">
+      <ul class="bullets">
+        <li class="f">Diskusi kelompok 25 menit</li>
+        <li class="f">Gambar peta di kertas A3</li>
+        <li class="f">Tulis nama anggota</li>
+        <li class="f">Siapkan presentasi 60–90 detik</li>
+        <li class="f">Periksa: ada tumpang tindih?</li>
       </ul>
+      <div class="card blue f" style="text-align:center; display:flex; flex-direction:column; justify-content:center;">
+        <div style="font-size:68px; font-weight:900; line-height:1; color:var(--accent2);">25:00</div>
+        <p style="margin-top:12px;">Mulai bersama: 3… 2… 1… GO!</p>
+      </div>
     </div>
-    <div class="pill fragment fade-up" style="text-align:center;background:var(--navy);color:#fff;">
-      <div class="timer" style="color:var(--orange);">25:00</div>
-      <p style="font-size:20pt;">Mulai bersama: 3… 2… 1… GO!</p>
+    <div class="timeTag">⏱ 25 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 13 : BERBAGI HASIL ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Presentasi</span>
+      <h2 class="title">Berbagi Hasil</h2>
     </div>
-  </div>
-  <div class="footer"><span>Slide 12</span><span>~25 menit</span></div>
-</section>
+    <ul class="bullets" style="flex:1; align-content:start;">
+      <li class="f">2–3 kelompok presentasi</li>
+      <li class="f">1 menit per kelompok</li>
+      <li class="f">Kelompok lain beri tanggapan</li>
+      <li class="f">1 apresiasi + 1 pertanyaan/saran</li>
+      <li class="f">Soroti variasi pengelompokan</li>
+    </ul>
+    <div class="grid g2 f" style="margin-top:16px;">
+      <div class="card">
+        <h3>👏 Apresiasi</h3>
+        <p>Apa yang sudah bagus?</p>
+      </div>
+      <div class="card gold">
+        <h3>💡 Saran</h3>
+        <p>Apa yang bisa ditambah?</p>
+      </div>
+    </div>
+    <div class="timeTag">⏱ 10 menit</div>
+  </section>
 
-<!-- SLIDE 13 -->
-<section data-transition="slide">
-  <div class="header-bar"></div>
-  <h2>Berbagi Hasil</h2>
-  <ul style="font-size:24pt;">
-    <li class="fragment fade-up">2–3 kelompok presentasi</li>
-    <li class="fragment fade-up">1 menit per kelompok</li>
-    <li class="fragment fade-up">Kelompok lain beri tanggapan</li>
-    <li class="fragment fade-up">1 apresiasi + 1 pertanyaan/saran</li>
-    <li class="fragment fade-up">Soroti variasi pengelompokan</li>
-  </ul>
-  <div class="grid2 fragment fade-up" style="margin-top:30px;">
-    <div class="card green" style="text-align:center;">👏 <b>Apresiasi</b><br>Apa yang sudah bagus?</div>
-    <div class="card" style="text-align:center;border-left-color:var(--orange);">💡 <b>Saran</b><br>Apa yang bisa ditambah?</div>
-  </div>
-  <div class="footer"><span>Slide 13</span><span>~10 menit</span></div>
-</section>
-
-<!-- SLIDE 14 -->
-<section data-transition="slide">
-  <div class="header-bar"></div>
-  <h2>Cek Pemahaman — Kuis Cepat</h2>
-  <div class="grid2" style="margin-top:20px;">
-    <div>
-      <ol style="font-size:22pt;">
-        <li class="fragment fade-up">Apa itu dekomposisi?</li>
-        <li class="fragment fade-up">Mengapa bedakan fakta & dugaan?</li>
-        <li class="fragment fade-up">Sebutkan 3 submasalah "kelas kotor"</li>
+  <!-- ================= SLIDE 14 : CEK PEMAHAMAN ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Cek Pemahaman</span>
+      <h2 class="title">Cek Pemahaman — Kuis Cepat</h2>
+    </div>
+    <div class="grid g2" style="flex:1; align-content:start;">
+      <ol class="steps">
+        <li class="f">Apa itu dekomposisi?</li>
+        <li class="f">Mengapa bedakan fakta &amp; dugaan?</li>
+        <li class="f">Sebutkan 3 submasalah "kelas kotor"</li>
       </ol>
+      <div class="card gold f" style="text-align:center; display:flex; flex-direction:column; justify-content:center; border-style:dashed; border-width:2px; border-color:rgba(251,146,60,.55);">
+        <div style="font-size:52px; line-height:1; margin-bottom:10px;">🤔</div>
+        <h3>Jawab dengan jari 1–3!</h3>
+        <p>Semua angkat tangan, ya!</p>
+      </div>
     </div>
-    <div class="pill fragment fade-up" style="text-align:center;background:#fff8e6;border:3px dashed var(--orange);">
-      <div class="emoji">🤔</div>
-      <p style="font-size:22pt;">Jawab dengan jari 1–3!</p>
-      <p style="font-size:18pt;">Semua angkat tangan, ya!</p>
+    <div class="timeTag">⏱ 5 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 15 : TIPS & KESALAHAN ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Peringatan</span>
+      <h2 class="title">Tips &amp; Kesalahan Umum</h2>
+    </div>
+    <div class="grid g2" style="flex:1; align-content:start;">
+      <div class="card pink f">
+        <h3>❌ HINDARI</h3>
+        <p>• Submasalah terlalu besar</p>
+        <p>• Saling tumpang tindih</p>
+        <p>• Lupa masalah utama</p>
+        <p>• Menyalahkan orang tanpa bukti</p>
+      </div>
+      <div class="card f">
+        <h3>✅ LAKUKAN</h3>
+        <p>• Logis &amp; jelas</p>
+        <p>• Didukung fakta</p>
+        <p>• Setiap bagian bisa ditindaklanjuti</p>
+        <p>• Bisa dijelaskan ke orang lain</p>
+      </div>
+    </div>
+    <div class="timeTag">⏱ 4 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 16 : REFLEKSI ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Aktivitas Reflektif</span>
+      <h2 class="title">Refleksi &amp; Exit Ticket</h2>
+    </div>
+    <div class="grid g2" style="flex:1; align-content:start;">
+      <ul class="bullets">
+        <li class="f">Apa hal baru yang dipelajari?</li>
+        <li class="f">Bagian mana paling sulit?</li>
+        <li class="f">Mengapa itu sulit?</li>
+        <li class="f">Di mana bisa dipakai?</li>
+      </ul>
+      <div class="card gold f" style="text-align:center; display:flex; flex-direction:column; justify-content:center;">
+        <h3>Seberapa paham?</h3>
+        <div style="font-size:38px; margin:8px 0;">😕 😐 😀 😄 🤩</div>
+        <p>1 &nbsp; 2 &nbsp; 3 &nbsp; 4 &nbsp; 5</p>
+      </div>
+    </div>
+    <div class="timeTag">⏱ 5 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 17 : ASESMEN ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Asesmen</span>
+      <h2 class="title">Asesmen &amp; Tindak Lanjut</h2>
+    </div>
+    <ul class="bullets" style="flex:1; align-content:start;">
+      <li class="f">Formatif: observasi + peta dekomposisi</li>
+      <li class="f">Sumatif: peta + kuis + exit ticket</li>
+      <li class="f">Rubrik skala 1–4 (5 aspek)</li>
+      <li class="f">Penguatan: kasus piket, 3 kartu</li>
+      <li class="f">Pengayaan: kumpulkan data waktu</li>
+      <li class="f">Lanjut: pola, abstraksi, algoritma</li>
+    </ul>
+    <div class="timeTag">⏱ 4 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 18 : PENUTUP ================= -->
+  <section class="slide">
+    <div class="closing">
+      <span class="eyebrow">Penutup</span>
+      <h1 class="title grad" style="font-size:58px;">Masalah Besar =<br>Kumpulan Masalah Kecil</h1>
+      <p class="motiv f">Memecah = langkah pertama menyelesaikan 💪</p>
+      <p class="lead f">Terima kasih! Sampai jumpa di Pertemuan berikutnya! 🚀</p>
+      <div class="idCard f">
+        <span><b>Tim MGMP Informatika</b></span>
+        <span><b>SMP Negeri 19 Kota Bekasi</b></span>
+      </div>
+    </div>
+    <div class="timeTag">⏱ 2 menit</div>
+  </section>
+
+  <!-- ================= HUD ================= -->
+  <div id="hud">
+    <div id="counter">1 / 18</div>
+    <div id="ctrl">
+      <button id="btnPrev" class="ctrl" title="Sebelumnya (←)">◀</button>
+      <button id="btnNext" class="ctrl" title="Berikutnya (→)">▶</button>
+      <button id="btnFs" class="ctrl" title="Layar penuh (F)">⛶</button>
     </div>
   </div>
-  <div class="footer"><span>Slide 14</span><span>~5 menit</span></div>
-</section>
-
-<!-- SLIDE 15 -->
-<section data-transition="slide">
-  <div class="header-bar"></div>
-  <h2>Tips & Kesalahan Umum</h2>
-  <div class="grid2" style="margin-top:20px;font-size:22pt;">
-    <div class="card red fragment fade-up">
-      <b>❌ HINDARI</b>
-      <ul style="font-size:20pt;margin-top:10px;">
-        <li>Submasalah terlalu besar</li>
-        <li>Saling tumpang tindih</li>
-        <li>Lupa masalah utama</li>
-        <li>Menyalahkan orang tanpa bukti</li>
-      </ul>
-    </div>
-    <div class="card green fragment fade-up">
-      <b>✅ LAKUKAN</b>
-      <ul style="font-size:20pt;margin-top:10px;">
-        <li>Logis & jelas</li>
-        <li>Didukung fakta</li>
-        <li>Setiap bagian bisa ditindaklanjuti</li>
-        <li>Bisa dijelaskan ke orang lain</li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer"><span>Slide 15</span><span>~4 menit</span></div>
-</section>
-
-<!-- SLIDE 16 -->
-<section data-transition="slide">
-  <div class="header-bar"></div>
-  <h2>Refleksi & Exit Ticket</h2>
-  <div class="grid2" style="margin-top:20px;">
-    <div>
-      <ul style="font-size:22pt;">
-        <li class="fragment fade-up">Apa hal baru yang dipelajari?</li>
-        <li class="fragment fade-up">Bagian mana paling sulit?</li>
-        <li class="fragment fade-up">Mengapa itu sulit?</li>
-        <li class="fragment fade-up">Di mana bisa dipakai?</li>
-      </ul>
-    </div>
-    <div class="pill fragment fade-up" style="text-align:center;background:#fff8e6;">
-      <p style="font-size:20pt;">Seberapa paham?</p>
-      <div style="font-size:36pt;">😕 😐 😀 😄 🤩</div>
-      <p style="font-size:18pt;">1 &nbsp; 2 &nbsp; 3 &nbsp; 4 &nbsp; 5</p>
-    </div>
-  </div>
-  <div class="footer"><span>Slide 16</span><span>~5 menit</span></div>
-</section>
-
-<!-- SLIDE 17 -->
-<section data-transition="slide">
-  <div class="header-bar"></div>
-  <h2>Asesmen & Tindak Lanjut</h2>
-  <ul style="font-size:22pt;">
-    <li class="fragment fade-up">Formatif: observasi + peta dekomposisi</li>
-    <li class="fragment fade-up">Sumatif: peta + kuis + exit ticket</li>
-    <li class="fragment fade-up">Rubrik skala 1–4 (5 aspek)</li>
-    <li class="fragment fade-up">Penguatan: kasus piket, 3 kartu</li>
-    <li class="fragment fade-up">Pengayaan: kumpulkan data waktu</li>
-    <li class="fragment fade-up">Lanjut: pola, abstraksi, algoritma</li>
-  </ul>
-  <div class="footer"><span>Slide 17</span><span>~4 menit</span></div>
-</section>
-
-<!-- ============ SLIDE 18 (DIPERBAIKI) ============ -->
-<section class="title-slide" data-transition="zoom">
-  <div class="header-bar"></div>
-  <span class="label-top">PENUTUP</span>
-  <h1 style="font-size:44pt;">Masalah Besar =<br>Kumpulan Masalah Kecil</h1>
-  <div class="divider"></div>
-  <p style="font-size:26pt;">Memecah = langkah pertama menyelesaikan 💪</p>
-  <p style="font-size:22pt;margin-top:30px;">Terima kasih! Sampai jumpa di Pertemuan berikutnya! 🚀</p>
-  <p style="font-size:18pt;opacity:.85;margin-top:20px;">
-    Tim MGMP Informatika • SMP Negeri 19 Kota Bekasi
-  </p>
-</section>
+  <div id="bar"><i></i></div>
+  <div id="hint">Klik / tekan → untuk lanjut</div>
 
 </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.js"></script>
+
 <script>
-  Reveal.initialize({
-    hash: true,
-    slideNumber: 'c/t',
-    transition: 'slide',
-    transitionSpeed: 'default',
-    backgroundTransition: 'fade',
-    controls: true,
-    progress: true,
-    center: false,
-    width: 1280,
-    height: 720,
-    margin: 0.05,
-    minScale: 0.2,
-    maxScale: 2.0
+(function(){
+  const stage   = document.getElementById('stage');
+  const slides  = Array.from(document.querySelectorAll('.slide'));
+  const counter = document.getElementById('counter');
+  const bar     = document.querySelector('#bar i');
+  const hint    = document.getElementById('hint');
+  let cur = 0;
+
+  /* ---------- skala otomatis 1280x720 ---------- */
+  function fit(){
+    const s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    stage.style.transform = 'scale(' + s + ')';
+  }
+  window.addEventListener('resize', fit);
+  fit();
+
+  /* ---------- transisi kreatif bergilir ---------- */
+  const TX = ['tx0','tx1','tx2','tx3','tx4','tx5','tx6','tx7'];
+
+  function applyTx(el, i){
+    TX.forEach(c => el.classList.remove(c));
+    el.classList.add(TX[i % TX.length]);
+  }
+
+  /* ---------- render ---------- */
+  function render(){
+    slides.forEach((s,i)=>{
+      s.classList.toggle('active', i===cur);
+      if(i===cur){ applyTx(s, i); }
+      else { TX.forEach(c => s.classList.remove(c)); }
+    });
+    counter.textContent = (cur+1) + ' / ' + slides.length;
+    bar.style.width = ((cur+1)/slides.length*100) + '%';
+    if(cur > 0) hint.classList.add('hide');
+  }
+
+  /* ---------- fragmen ---------- */
+  function frags(slide){ return Array.from(slide.querySelectorAll('.f')); }
+  function hiddenFrags(slide){ return frags(slide).filter(f => !f.classList.contains('show')); }
+
+  function next(){
+    const s = slides[cur];
+    const h = hiddenFrags(s);
+    if(h.length){
+      h[0].classList.add('show');
+      return;
+    }
+    if(cur < slides.length - 1){
+      cur++;
+      render();
+    }
+  }
+
+  function prev(){
+    const s = slides[cur];
+    const shown = frags(s).filter(f => f.classList.contains('show'));
+    if(shown.length){
+      shown[shown.length-1].classList.remove('show');
+      return;
+    }
+    if(cur > 0){
+      cur--;
+      render();
+      // tampilkan seluruh fragmen slide sebelumnya agar konteks terlihat
+      frags(slides[cur]).forEach(f => f.classList.add('show'));
+    }
+  }
+
+  function goTo(i){
+    cur = Math.max(0, Math.min(slides.length-1, i));
+    render();
+  }
+
+  /* ---------- kontrol ---------- */
+  document.addEventListener('click', function(e){
+    if(e.target.closest('#ctrl')) return;
+    if(e.target.closest('button')) return;
+    next();
   });
+
+  document.getElementById('btnNext').addEventListener('click', function(e){ e.stopPropagation(); next(); });
+  document.getElementById('btnPrev').addEventListener('click', function(e){ e.stopPropagation(); prev(); });
+  document.getElementById('btnFs').addEventListener('click', function(e){
+    e.stopPropagation();
+    if(!document.fullscreenElement){ document.documentElement.requestFullscreen(); }
+    else { document.exitFullscreen(); }
+  });
+
+  document.addEventListener('keydown', function(e){
+    const k = e.key;
+    if(k==='ArrowRight' || k==='ArrowDown' || k===' ' || k==='PageDown' || k==='Enter'){
+      e.preventDefault(); next();
+    } else if(k==='ArrowLeft' || k==='ArrowUp' || k==='PageUp'){
+      e.preventDefault(); prev();
+    } else if(k==='Home'){
+      e.preventDefault(); goTo(0);
+    } else if(k==='End'){
+      e.preventDefault(); goTo(slides.length-1);
+    } else if(k==='f' || k==='F'){
+      e.preventDefault();
+      if(!document.fullscreenElement){ document.documentElement.requestFullscreen(); }
+      else { document.exitFullscreen(); }
+    }
+  });
+
+  /* ---------- start ---------- */
+  render();
+  setTimeout(()=>{ if(cur===0) hint.classList.remove('hide'); }, 400);
+})();
 </script>
 </body>
 </html>
