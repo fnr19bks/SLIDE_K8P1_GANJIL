@@ -96,9 +96,10 @@ body{
   background:rgba(52,211,153,.08);
 }
 h1.title{font-size:52px; line-height:1.06; font-weight:900; letter-spacing:-.5px;}
-h2.title{font-size:40px; line-height:1.12; font-weight:900; letter-spacing:-.4px; margin-bottom:6px;}
+h2.title{font-size:38px; line-height:1.12; font-weight:900; letter-spacing:-.4px; margin-bottom:6px;}
+h3.title{font-size:28px; line-height:1.15; font-weight:800; margin-bottom:6px;}
 .sub{font-size:21px; color:var(--muted); margin-top:10px; line-height:1.4;}
-.lead{font-size:23px; color:var(--text); line-height:1.5;}
+.lead{font-size:22px; color:var(--text); line-height:1.5;}
 .grad{
   background:linear-gradient(100deg,#34D399 0%, #60A5FA 45%, #FB923C 100%);
   -webkit-background-clip:text; background-clip:text; color:transparent;
@@ -107,11 +108,11 @@ h2.title{font-size:40px; line-height:1.12; font-weight:900; letter-spacing:-.4px
 .hl2{color:var(--accent2); font-weight:800;}
 .hl3{color:var(--accent3); font-weight:800;}
 .pinkT{color:var(--pink); font-weight:800;}
-.head{margin-bottom:20px;}
+.head{margin-bottom:16px;}
 
 /* ============ LIST ============ */
-ul.bullets{list-style:none; display:flex; flex-direction:column; gap:13px;}
-ul.bullets li{position:relative; padding-left:36px; font-size:22px; line-height:1.35;}
+ul.bullets{list-style:none; display:flex; flex-direction:column; gap:11px;}
+ul.bullets li{position:relative; padding-left:36px; font-size:20px; line-height:1.35;}
 ul.bullets li::before{
   content:"▸"; position:absolute; left:8px; top:-1px; color:var(--accent);
   font-weight:900; font-size:22px;
@@ -119,28 +120,28 @@ ul.bullets li::before{
 ul.bullets.gold li::before{content:"★"; color:var(--accent2); font-size:18px; left:6px;}
 ul.bullets.blue li::before{content:"◆"; color:var(--accent3); font-size:15px; left:8px;}
 
-ol.steps{list-style:none; counter-reset:st; display:flex; flex-direction:column; gap:12px;}
+ol.steps{list-style:none; counter-reset:st; display:flex; flex-direction:column; gap:10px;}
 ol.steps li{
-  counter-increment:st; position:relative; padding-left:56px;
-  font-size:21px; line-height:1.35; min-height:38px; display:flex; align-items:center;
+  counter-increment:st; position:relative; padding-left:52px;
+  font-size:20px; line-height:1.35; min-height:36px; display:flex; align-items:center;
 }
 ol.steps li::before{
   content:counter(st); position:absolute; left:0; top:50%; transform:translateY(-50%);
-  width:38px; height:38px; border-radius:50%;
+  width:36px; height:36px; border-radius:50%;
   background:linear-gradient(140deg,var(--accent),#0F766E);
-  color:#04241A; font-weight:900; font-size:19px;
+  color:#04241A; font-weight:900; font-size:18px;
   display:grid; place-items:center;
   box-shadow:0 0 0 4px rgba(52,211,153,.12);
 }
 
 /* ============ GRID & CARD ============ */
-.grid{display:grid; gap:18px;}
+.grid{display:grid; gap:16px;}
 .g2{grid-template-columns:repeat(2,1fr);}
 .g3{grid-template-columns:repeat(3,1fr);}
 .g4{grid-template-columns:repeat(4,1fr);}
 .card{
   background:var(--card); border:1px solid rgba(255,255,255,.10);
-  border-radius:18px; padding:20px 22px;
+  border-radius:18px; padding:18px 20px;
   backdrop-filter:blur(6px);
   position:relative; overflow:hidden;
   transition:transform .28s ease, border-color .28s ease, box-shadow .28s ease;
@@ -150,9 +151,9 @@ ol.steps li::before{
   background:linear-gradient(180deg,var(--accent),transparent);
 }
 .card:hover{transform:translateY(-5px); border-color:var(--line); box-shadow:0 16px 34px rgba(0,0,0,.32);}
-.card h3{font-size:21px; font-weight:800; margin-bottom:8px;}
-.card p{font-size:18px; line-height:1.45; color:var(--muted);}
-.card .ico{font-size:34px; display:block; margin-bottom:8px;}
+.card h3{font-size:20px; font-weight:800; margin-bottom:8px;}
+.card p{font-size:17px; line-height:1.45; color:var(--muted);}
+.card .ico{font-size:32px; display:block; margin-bottom:8px;}
 .card.gold::after{background:linear-gradient(180deg,var(--accent2),transparent);}
 .card.gold h3{color:var(--accent2);}
 .card.blue::after{background:linear-gradient(180deg,var(--accent3),transparent);}
@@ -181,65 +182,24 @@ ol.steps li::before{
 /* ============ CODE ============ */
 .code{
   font-family:"Consolas","SFMono-Regular",Menlo,monospace;
-  font-size:18px; line-height:1.55;
+  font-size:17px; line-height:1.55;
   background:rgba(4,14,26,.78);
   border-left:5px solid var(--accent);
   border-radius:12px; padding:16px 20px; color:#CDEBFF;
-  white-space:pre; overflow:auto;
+  white-space:pre-wrap; overflow:auto;
 }
-.code.sm{font-size:16px; line-height:1.5; padding:14px 18px;}
+.code.sm{font-size:15px; line-height:1.5; padding:14px 18px;}
 .code b{color:var(--accent2);}
 .code i{color:var(--muted); font-style:normal;}
 
-/* ============ FLOW ============ */
-.flow{display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; margin:9px 0;}
-.node{
-  padding:12px 18px; border-radius:14px; font-size:17px; font-weight:800; text-align:center;
-  background:rgba(52,211,153,.13); border:1.5px solid var(--line); color:var(--text);
-  transition:transform .25s ease, box-shadow .25s ease;
-}
-.node:hover{transform:translateY(-3px); box-shadow:0 10px 22px rgba(0,0,0,.3);}
-.node.oval{border-radius:999px; background:rgba(96,165,250,.15); border-color:rgba(96,165,250,.5);}
-.node.diamond{
-  width:180px; height:100px; padding:0 26px; border-radius:0; border:none;
-  background:linear-gradient(140deg,rgba(251,146,60,.42),rgba(251,146,60,.16));
-  clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);
-  display:grid; place-items:center; font-size:14px; line-height:1.2;
-  color:#FFE9D6;
-}
-.arrow{color:var(--accent); font-size:24px; font-weight:900;}
-.branchLabel{
-  background:var(--accent2); color:#08172A; font-weight:900; font-size:14px;
-  padding:4px 12px; border-radius:999px;
-}
-
-/* ============ TIMELINE ============ */
-.timeline{display:flex; align-items:flex-start; gap:0; margin-top:10px;}
-.tl{flex:1; position:relative; padding-top:44px; text-align:center;}
-.tl::before{
-  content:""; position:absolute; top:19px; left:0; right:0; height:3px;
-  background:linear-gradient(90deg,rgba(52,211,153,.35),rgba(96,165,250,.35));
-}
-.tl:first-child::before{left:50%;}
-.tl:last-child::before{right:50%;}
-.tl .dot{
-  position:absolute; top:8px; left:50%; transform:translateX(-50%);
-  width:26px; height:26px; border-radius:50%;
-  background:linear-gradient(140deg,var(--accent),#0F766E);
-  border:3px solid #08172A; display:grid; place-items:center;
-  font-size:12px; font-weight:900; color:#04241A;
-}
-.tl h4{font-size:18px; font-weight:800; margin-bottom:5px; color:var(--accent);}
-.tl p{font-size:15px; color:var(--muted); line-height:1.35; padding:0 8px;}
-
 /* ============ TABEL ============ */
-table{width:100%; border-collapse:collapse; border-radius:14px; overflow:hidden; font-size:18px;}
+table{width:100%; border-collapse:collapse; border-radius:14px; overflow:hidden; font-size:16px;}
 thead th{
   background:rgba(52,211,153,.18); color:var(--text);
-  text-align:left; padding:13px 16px; font-size:17px; font-weight:800;
+  text-align:left; padding:10px 14px; font-size:15px; font-weight:800;
   border-bottom:1px solid var(--line); letter-spacing:.02em;
 }
-tbody td{padding:12px 16px; border-bottom:1px solid rgba(255,255,255,.07); line-height:1.35; vertical-align:top;}
+tbody td{padding:9px 14px; border-bottom:1px solid rgba(255,255,255,.07); line-height:1.35; vertical-align:top; font-size:15px;}
 tbody tr:nth-child(odd){background:rgba(255,255,255,.035);}
 tbody tr:nth-child(even){background:rgba(255,255,255,.012);}
 tbody tr:hover{background:rgba(52,211,153,.09);}
@@ -249,15 +209,10 @@ td.c{text-align:center; font-weight:800; color:var(--accent);}
 .bubble{
   position:relative; background:rgba(96,165,250,.14);
   border:1.5px solid rgba(96,165,250,.45); border-radius:20px;
-  padding:22px 26px; font-size:23px; line-height:1.45; color:var(--text);
-  max-width:900px;
+  padding:20px 24px; font-size:21px; line-height:1.45; color:var(--text);
+  max-width:1000px;
 }
-.bubble::after{
-  content:""; position:absolute; left:52px; bottom:-15px;
-  width:0; height:0; border:15px solid transparent;
-  border-top-color:rgba(96,165,250,.45); border-bottom:0;
-}
-.bubble .who{display:block; font-size:15px; font-weight:800; color:var(--accent3); letter-spacing:.14em; text-transform:uppercase; margin-bottom:8px;}
+.bubble .who{display:block; font-size:14px; font-weight:800; color:var(--accent3); letter-spacing:.14em; text-transform:uppercase; margin-bottom:8px;}
 
 /* ============ HUD ============ */
 #hud{
@@ -312,22 +267,12 @@ td.c{text-align:center; font-weight:800; color:var(--accent);}
 .coverWrap{display:grid; grid-template-columns:1.15fr .85fr; gap:40px; flex:1; align-items:center;}
 .coverLeft h1{margin:14px 0 6px;}
 .coverRight{display:flex; flex-direction:column; gap:9px;}
-.meta{
-  display:flex; gap:12px; align-items:baseline;
-  background:rgba(255,255,255,.055); border:1px solid rgba(255,255,255,.09);
-  border-left:4px solid var(--accent); border-radius:12px; padding:9px 14px;
-}
-.meta b{font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); min-width:112px; font-weight:800;}
-.meta span{font-size:16px; color:var(--text); line-height:1.3;}
-.meta.m2{border-left-color:var(--accent2);} .meta.m2 b{color:var(--accent2);}
-.meta.m3{border-left-color:var(--accent3);} .meta.m3 b{color:var(--accent3);}
-.meta.m4{border-left-color:var(--pink);} .meta.m4 b{color:var(--pink);}
 
 /* ============ PENUTUP ============ */
 .closing{flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:22px;}
-.closing h1{font-size:76px; font-weight:900; letter-spacing:-1px;}
+.closing h1{font-size:72px; font-weight:900; letter-spacing:-1px;}
 .motiv{
-  font-size:26px; font-weight:700; line-height:1.5; max-width:900px;
+  font-size:25px; font-weight:700; line-height:1.5; max-width:900px;
   color:var(--text); font-style:italic;
 }
 .idCard{
@@ -340,19 +285,17 @@ td.c{text-align:center; font-weight:800; color:var(--accent);}
 
 /* ============ MISC ============ */
 .rowFlex{display:flex; gap:18px; align-items:stretch;}
-.stack{display:flex; flex-direction:column; gap:16px;}
-.bigNum{
-  font-size:52px; font-weight:900; line-height:1;
-  background:linear-gradient(140deg,var(--accent),var(--accent3));
-  -webkit-background-clip:text; background-clip:text; color:transparent;
-}
+.stack{display:flex; flex-direction:column; gap:14px;}
 .qBox{
   background:rgba(96,165,250,.10); border:1px solid rgba(96,165,250,.34);
-  border-radius:16px; padding:16px 20px;
+  border-radius:16px; padding:14px 18px;
 }
-.qBox h4{font-size:19px; font-weight:800; color:var(--accent3); margin-bottom:8px;}
-.qBox p{font-size:19px; line-height:1.45;}
-.ans{font-size:17px; color:var(--accent2); font-weight:800; margin-top:8px;}
+.qBox h4{font-size:18px; font-weight:800; color:var(--accent3); margin-bottom:6px;}
+.qBox p{font-size:17px; line-height:1.45;}
+.ans{font-size:16px; color:var(--accent2); font-weight:800; margin-top:6px;}
+.scrollable{overflow:auto; flex:1; padding-right:6px;}
+.scrollable::-webkit-scrollbar{width:6px;}
+.scrollable::-webkit-scrollbar-thumb{background:rgba(52,211,153,.35); border-radius:3px;}
 </style>
 </head>
 <body>
@@ -362,358 +305,1178 @@ td.c{text-align:center; font-weight:800; color:var(--accent);}
   <!-- ================= SLIDE 1 : COVER ================= -->
   <section class="slide">
     <div class="closing">
-      <span class="eyebrow">Informatika • Kelas 8 • Fase D</span>
+      <span class="eyebrow">Informatika • Kelas VIII • Fase D • Pertemuan 1 dari 16</span>
       <h1 class="title grad">Berpikir Komputasional</h1>
-      <p class="motiv f">Memecah Masalah Kompleks</p>
+      <p class="motiv f">Memecah Masalah Kompleks melalui LKPD Interaktif</p>
+      <p class="lead f">"Pecahkan Masalah Besar dengan Cara Kecil!"</p>
       <div class="idCard f">
+        <span><b>SMP Kelas VIII</b></span>
+        <span><b>2 × 40 menit</b></span>
         <span><b>Tim MGMP Informatika</b></span>
-        <span><b>SMP Negeri 19 Kota Bekasi</b></span>
       </div>
     </div>
     <div class="timeTag">⏱ 2 menit</div>
   </section>
 
-  <!-- ================= SLIDE 2 : TUJUAN ================= -->
+  <!-- ================= SLIDE 2 : IDENTITAS MODUL ================= -->
   <section class="slide">
     <div class="head">
-      <span class="eyebrow">Tujuan Pembelajaran</span>
-      <h2 class="title">Tujuan Pembelajaran Hari Ini</h2>
+      <span class="eyebrow">Identitas Modul</span>
+      <h2 class="title">Identitas Modul Ajar</h2>
     </div>
-    <div class="grid g4" style="flex:1; align-content:start;">
-      <div class="card f"><span class="ico">🔍</span><h3>Identifikasi</h3><p>masalah utama</p></div>
-      <div class="card blue f"><span class="ico">✂️</span><h3>Pecah</h3><p>jadi 3 submasalah</p></div>
-      <div class="card gold f"><span class="ico">🔗</span><h3>Jelaskan</h3><p>hubungan antar bagian</p></div>
-      <div class="card pink f"><span class="ico">🗺️</span><h3>Susun</h3><p>peta dekomposisi</p></div>
+    <div class="scrollable" style="flex:1;">
+      <table>
+        <thead><tr><th style="width:32%;">Identitas</th><th>Keterangan</th></tr></thead>
+        <tbody>
+          <tr><td>Mata pelajaran</td><td>Informatika</td></tr>
+          <tr><td>Elemen/domain</td><td>Berpikir Komputasional</td></tr>
+          <tr><td>Topik</td><td>Memecah masalah kompleks (dekomposisi)</td></tr>
+          <tr><td>Konteks</td><td>LKPD interaktif berbasis web dengan 5 level permainan</td></tr>
+          <tr><td>Sasaran</td><td>Murid kelas VIII yang heterogen; sebagian besar belum mengenal dasar TIK</td></tr>
+          <tr><td>Sarana</td><td>Laptop/PC sekolah, internet sekolah, proyektor; alternatif kertas dan kartu masalah</td></tr>
+          <tr><td>Model dan pendekatan</td><td>Problem Based Learning (PBL), Pembelajaran Mendalam, UDL, dan Berpikir Komputasional</td></tr>
+        </tbody>
+      </table>
     </div>
-    <p class="lead f" style="margin-top:18px; text-align:center;">
-      ✨ Hari ini kita jadi <span class="hl">detektif masalah</span>, bukan hakim!
-    </p>
     <div class="timeTag">⏱ 2 menit</div>
   </section>
 
-  <!-- ================= SLIDE 3 : PERTANYAAN PEMANTIK ================= -->
+  <!-- ================= SLIDE 3 : CATATAN PENGGUNAAN ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Catatan Penggunaan</span>
+      <h2 class="title">Sebelum Kita Mulai</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <div class="card f" style="margin-bottom:14px;">
+        <h3>📋 Fleksibilitas Modul</h3>
+        <p>Modul ini dirancang untuk satu pertemuan 80 menit. Guru dapat menyesuaikan nama tempat, aturan antrean, kondisi kantin, dan pembagian piket sesuai keadaan sekolah.</p>
+      </div>
+      <div class="card blue f">
+        <h3>🌐 LKPD Interaktif</h3>
+        <p>Dapat diakses melalui URL:</p>
+        <p style="margin-top:8px; color:var(--accent3); font-weight:700; word-break:break-all;">https://fnr19bks.github.io/lkpd-berpikir-komputasional/</p>
+      </div>
+    </div>
+    <div class="timeTag">⏱ 2 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 4 : CAPAIAN PEMBELAJARAN ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Capaian Pembelajaran (CP)</span>
+      <h2 class="title">Elemen Berpikir Komputasional Fase D</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <p class="lead f" style="margin-bottom:16px;">
+        Murid menerapkan berpikir komputasional untuk menyelesaikan persoalan sehari-hari maupun persoalan yang lebih kompleks secara terstruktur.
+      </p>
+      <div class="card gold f" style="margin-bottom:14px;">
+        <h3>🎯 Fokus Pertemuan Ini</h3>
+        <p>Fokus pembelajaran dipersempit pada kemampuan mengenali masalah nyata, menguraikannya menjadi bagian-bagian yang lebih kecil, serta menunjukkan hubungan antarbagiannya.</p>
+      </div>
+      <div class="card blue f">
+        <h3>📌 Penjabaran Operasional</h3>
+        <p>Murid mampu menjelaskan bahwa masalah kompleks dapat ditangani dengan memecahnya menjadi submasalah yang lebih mudah dipahami dan ditindaklanjuti.</p>
+        <p style="margin-top:8px; font-size:15px; font-style:italic;">Rumusan ini merupakan fokus pembelajaran pertemuan, bukan kutipan resmi lengkap CP.</p>
+      </div>
+    </div>
+    <div class="timeTag">⏱ 3 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 5 : TUJUAN PEMBELAJARAN ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Tujuan Pembelajaran</span>
+      <h2 class="title">Tujuan Pembelajaran dan Indikator</h2>
+    </div>
+    <p class="lead f" style="margin-bottom:14px;">
+      Pada akhir pembelajaran, murid dapat menganalisis satu masalah nyata di lingkungan sekolah dan menyusun <span class="hl">peta dekomposisi</span> (decomposition map) yang memuat masalah utama, submasalah, serta hubungan atau urutan penanganannya.
+    </p>
+    <div class="scrollable" style="flex:1;">
+      <table>
+        <thead><tr><th style="width:38%;">Tujuan Pembelajaran</th><th>Indikator ketercapaian yang dapat diamati</th></tr></thead>
+        <tbody>
+          <tr><td>Mengidentifikasi masalah utama dalam situasi antrean kantin atau piket.</td><td>Menyebutkan masalah secara jelas, tidak sekadar menyebut gejala; menyertakan minimal dua fakta dari skenario/pengamatan.</td></tr>
+          <tr><td>Memecah masalah menjadi bagian yang lebih kecil.</td><td>Menghasilkan minimal 3 submasalah yang relevan, tidak tumpang tindih secara berlebihan, dan dapat ditindaklanjuti.</td></tr>
+          <tr><td>Menjelaskan hubungan antarsubmasalah.</td><td>Menunjukkan urutan, sebab-akibat, atau keterkaitan.</td></tr>
+          <tr><td>Mengenali 4 keterampilan berpikir komputasional.</td><td>Menyebutkan dekomposisi, pengenalan pola, abstraksi, dan algoritma beserta definisinya.</td></tr>
+          <tr><td>Menganalisis masalah dengan 4 pertanyaan analisis.</td><td>Menerapkan pertanyaan: tujuan akhir, sumber daya, hambatan, dan informasi yang kurang.</td></tr>
+          <tr><td>Menyusun langkah dekomposisi secara berurutan.</td><td>Mengurutkan 5 langkah penyelesaian masalah dengan tepat.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="timeTag">⏱ 4 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 6 : KRITERIA KEBERHASILAN ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Kriteria Keberhasilan</span>
+      <h2 class="title">Apa yang Kita Capai Hari Ini?</h2>
+    </div>
+    <div class="grid g2" style="flex:1; align-content:start;">
+      <div class="card f">
+        <span class="ico">🗺️</span>
+        <h3>Peta Dekomposisi</h3>
+        <p>Sebagian besar murid dapat menyusun peta dengan satu masalah utama, sedikitnya tiga submasalah relevan, dan penjelasan singkat mengenai hubungan atau prioritasnya.</p>
+      </div>
+      <div class="card gold f">
+        <span class="ico">🎮</span>
+        <h3>LKPD Interaktif</h3>
+        <p>Murid mampu menyelesaikan minimal 3 dari 5 level dalam LKPD interaktif.</p>
+      </div>
+    </div>
+    <div class="timeTag">⏱ 3 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 7 : PEMAHAMAN BERMAKNA ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Pemahaman Bermakna</span>
+      <h2 class="title">Mengapa Ini Penting?</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <ul class="bullets gold">
+        <li class="f">Masalah yang tampak besar sering terdiri atas beberapa masalah kecil yang saling berhubungan.</li>
+        <li class="f">Memecah masalah membantu kita memahami apa yang perlu diperiksa atau dilakukan terlebih dahulu.</li>
+        <li class="f">Pembagian masalah yang baik harus berdasarkan fakta, adil terhadap orang yang terlibat, dan dapat diperbaiki setelah mendapat masukan.</li>
+        <li class="f">Berpikir komputasional bukan hanya kegiatan menggunakan komputer; cara berpikir ini dapat digunakan saat mengatur antrean, piket, kegiatan kelompok, atau pekerjaan rumah.</li>
+      </ul>
+    </div>
+    <div class="timeTag">⏱ 4 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 8 : PERTANYAAN PEMANTIK ================= -->
   <section class="slide">
     <div class="head">
       <span class="eyebrow">Apersepsi</span>
       <h2 class="title">Pertanyaan Pemantik</h2>
     </div>
-    <ul class="bullets" style="flex:1; align-content:start;">
-      <li class="f">Pernah menunggu lama di kantin?</li>
-      <li class="f">Apa penyebab antrean panjang?</li>
-      <li class="f">Apakah hanya karena "murid malas"?</li>
-      <li class="f">Informasi apa yang perlu dicari dulu?</li>
-    </ul>
-    <div class="card gold f" style="margin-top:16px;">
-      <h3>💡 Think-Pair-Share</h3>
-      <p>30 detik berpikir → 30 detik diskusi pasangan → berbagi!</p>
+    <div class="scrollable" style="flex:1;">
+      <div class="qBox f" style="margin-bottom:12px;">
+        <h4>1. Antrean Panjang</h4>
+        <p>Pernahkah kalian menunggu lama di kantin? Apa saja hal yang mungkin menyebabkan antrean menjadi panjang?</p>
+      </div>
+      <div class="qBox f" style="margin-bottom:12px;">
+        <h4>2. Piket yang Tidak Berjalan</h4>
+        <p>Jika kelas sering terlambat bersih karena piket tidak berjalan, apakah masalahnya hanya "murid malas"? Informasi apa yang perlu kita cari sebelum menyimpulkan?</p>
+      </div>
+      <div class="qBox f" style="margin-bottom:12px;">
+        <h4>3. Memecah Masalah</h4>
+        <p>Bagaimana cara mengubah satu masalah besar menjadi beberapa bagian yang bisa diperiksa satu per satu?</p>
+      </div>
+      <div class="qBox f">
+        <h4>4. Prioritas</h4>
+        <p>Bagian mana yang perlu ditangani lebih dahulu? Apa alasan kalian?</p>
+      </div>
     </div>
-    <div class="timeTag">⏱ 3 menit</div>
+    <div class="timeTag">⏱ 5 menit</div>
   </section>
 
-  <!-- ================= SLIDE 4 : APA ITU ================= -->
+  <!-- ================= SLIDE 9 : KONSEP INTI ================= -->
   <section class="slide">
     <div class="head">
-      <span class="eyebrow">Definisi Konsep Inti</span>
-      <h2 class="title">Apa Itu Berpikir Komputasional?</h2>
+      <span class="eyebrow">Materi • Konsep Inti</span>
+      <h2 class="title">Dekomposisi (Pemecahan Masalah)</h2>
     </div>
-    <div class="grid g4" style="flex:1; align-content:start;">
-      <div class="card gold f" style="border-color:rgba(251,146,60,.55);">
-        <span class="ico">🧩</span><h3>Dekomposisi</h3><p>Pecah masalah</p>
+    <div class="scrollable" style="flex:1;">
+      <p class="lead f" style="margin-bottom:16px;">
+        <span class="hl">Dekomposisi</span> adalah cara menguraikan satu masalah yang rumit menjadi beberapa bagian lebih kecil agar lebih mudah dipahami, dianalisis, dan ditangani.
+      </p>
+      <div class="card f">
+        <h3>🗺️ Peta Dekomposisi</h3>
+        <p>Hasil penguraian dapat digambarkan sebagai peta dekomposisi: masalah utama ditulis di bagian atas/tengah, lalu dihubungkan dengan submasalah menggunakan garis atau panah.</p>
       </div>
-      <div class="card f"><span class="ico">🔁</span><h3>Pola</h3><p>Cari kesamaan</p></div>
-      <div class="card blue f"><span class="ico">🎯</span><h3>Abstraksi</h3><p>Ambil inti</p></div>
-      <div class="card pink f"><span class="ico">📋</span><h3>Algoritma</h3><p>Susun langkah</p></div>
-    </div>
-    <p class="lead f" style="margin-top:18px; text-align:center;">
-      Hari ini kita fokus pada <span class="badge">DEKOMPOSISI</span>
-    </p>
-    <div class="timeTag">⏱ 3 menit</div>
-  </section>
-
-  <!-- ================= SLIDE 5 : FOKUS DEKOMPOSISI ================= -->
-  <section class="slide">
-    <div class="head">
-      <span class="eyebrow">Fokus Materi</span>
-      <h2 class="title">Fokus: Dekomposisi</h2>
-    </div>
-    <div class="rowFlex" style="flex:1; align-items:center; justify-content:center;">
-      <div class="card gold f" style="text-align:center; font-size:24px; font-weight:900; padding:26px 24px;">
-        😰 MASALAH<br>BESAR
-      </div>
-      <div class="f" style="font-size:38px; font-weight:900; color:var(--accent2);">✂️ →</div>
-      <div class="grid g2 f" style="flex:1;">
-        <div class="node">🔹 Bagian 1</div>
-        <div class="node">🔹 Bagian 2</div>
-        <div class="node">🔹 Bagian 3</div>
-        <div class="node">🔹 Bagian 4</div>
-      </div>
-    </div>
-    <p class="lead f" style="margin-top:14px; text-align:center;">
-      🍚 "Makan nasi sepiring tidak sekali suap"
-    </p>
-    <div class="timeTag">⏱ 3 menit</div>
-  </section>
-
-  <!-- ================= SLIDE 6 : ANALOGI PIKET ================= -->
-  <section class="slide">
-    <div class="head">
-      <span class="eyebrow">Analogi</span>
-      <h2 class="title">Analogi: Piket Kelas</h2>
-    </div>
-    <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;">
-      <div class="node f" style="font-size:24px; padding:16px 30px; background:rgba(96,165,250,.18); border-color:rgba(96,165,250,.55);">
-        🧹 PIKET KELAS
-      </div>
-      <div class="f" style="font-size:30px; color:var(--accent); font-weight:900;">↓</div>
-      <div class="grid g4 f" style="width:100%;">
-        <div class="node">🧹<br>Menyapu</div>
-        <div class="node">🪣<br>Mengepel</div>
-        <div class="node">🗑️<br>Buang sampah</div>
-        <div class="node">📚<br>Merapikan</div>
-      </div>
-      <p class="lead f" style="color:var(--accent);">✅ Selesai lebih cepat &amp; rapi!</p>
     </div>
     <div class="timeTag">⏱ 4 menit</div>
   </section>
 
-  <!-- ================= SLIDE 7 : KASUS ANTREAN KANTIN ================= -->
+  <!-- ================= SLIDE 10 : ISTILAH PENTING ================= -->
   <section class="slide">
     <div class="head">
-      <span class="eyebrow">Studi Kasus</span>
-      <h2 class="title">Kasus: Antrean Kantin Sekolah</h2>
+      <span class="eyebrow">Materi • Istilah</span>
+      <h2 class="title">Istilah Penting dalam Dekomposisi</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <table>
+        <thead><tr><th style="width:30%;">Istilah</th><th>Penjelasan sederhana</th></tr></thead>
+        <tbody>
+          <tr><td>Masalah utama</td><td>Situasi yang ingin diperbaiki atau dijelaskan.</td></tr>
+          <tr><td>Submasalah</td><td>Bagian lebih kecil dari masalah utama yang dapat diperiksa secara terpisah.</td></tr>
+          <tr><td>Fakta/bukti</td><td>Informasi yang benar-benar diketahui dari pengamatan atau skenario.</td></tr>
+          <tr><td>Peta dekomposisi</td><td>Gambar bercabang yang memperlihatkan masalah utama dan bagian-bagiannya.</td></tr>
+          <tr><td>Prioritas</td><td>Bagian yang dipilih untuk diperiksa/ditangani lebih dahulu berdasarkan alasan.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="timeTag">⏱ 3 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 11 : 4 KETERAMPILAN BK ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Level 1 LKPD Interaktif</span>
+      <h2 class="title">4 Keterampilan Berpikir Komputasional</h2>
+    </div>
+    <div class="grid g4" style="flex:1; align-content:start;">
+      <div class="card f"><span class="ico">🧩</span><h3>Decomposition</h3><p>Memecah masalah besar menjadi bagian-bagian kecil (breaking a big problem into smaller parts).</p></div>
+      <div class="card blue f"><span class="ico">🔁</span><h3>Pattern Recognition</h3><p>Mencari kesamaan atau pola dari masalah yang pernah ada (finding similarities or patterns).</p></div>
+      <div class="card gold f"><span class="ico">🎯</span><h3>Abstraction</h3><p>Fokus pada hal penting, mengabaikan detail yang tidak perlu (focusing on what matters).</p></div>
+      <div class="card pink f"><span class="ico">📋</span><h3>Algorithm</h3><p>Menyusun langkah-langkah penyelesaian secara berurutan (arranging steps in order).</p></div>
+    </div>
+    <div class="timeTag">⏱ 4 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 12 : CARA BERMAIN LEVEL 1 ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Level 1 • Cara Bermain</span>
+      <h2 class="title">Cara Bermain Level 1</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <div class="card f" style="margin-bottom:14px;">
+        <h3>🖱️ Langkah Bermain</h3>
+        <p>Klik kartu di kolom kiri (istilah), lalu klik kartu di kolom kanan (definisi) yang cocok.</p>
+      </div>
+      <div class="card gold f" style="margin-bottom:14px;">
+        <h3>🎯 Sistem Poin</h3>
+        <p>Setiap pasangan yang benar akan mendapat poin.</p>
+      </div>
+      <div class="card blue f">
+        <h3>🏆 Skor Maksimal</h3>
+        <p>Level 1 adalah 16 poin (4 pasangan × 4 poin).</p>
+      </div>
+    </div>
+    <div class="timeTag">⏱ 3 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 13 : 4 PERTANYAAN ANALISIS ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Level 2 LKPD Interaktif</span>
+      <h2 class="title">4 Pertanyaan Analisis</h2>
     </div>
     <div class="grid g2" style="flex:1; align-content:start;">
-      <ul class="bullets">
-        <li class="f">Bel istirahat berbunyi bersamaan</li>
-        <li class="f">Memilih makanan di depan etalase</li>
-        <li class="f">Barisan melebar, halangi jalur keluar</li>
-        <li class="f">Pembayaran di satu titik saat ramai</li>
-        <li class="f">Waktu istirahat terbatas</li>
-        <li class="f">Belum ada data waktu tunggu</li>
-      </ul>
+      <div class="card f"><span class="ico">🎯</span><h3>Apa tujuan akhirnya?</h3><p><i>What is the final goal?</i></p></div>
+      <div class="card blue f"><span class="ico">📦</span><h3>Apa saja yang sudah kita punya?</h3><p><i>What do we have?</i></p></div>
+      <div class="card gold f"><span class="ico">🚧</span><h3>Apa hambatannya?</h3><p><i>What are the obstacles?</i></p></div>
+      <div class="card pink f"><span class="ico">❓</span><h3>Informasi apa yang masih kurang?</h3><p><i>What info is missing?</i></p></div>
+    </div>
+    <p class="lead f" style="margin-top:16px; text-align:center;">
+      Skor maksimal Level 2: <span class="hl2">24 poin</span> (6 soal × 4 poin)
+    </p>
+    <div class="timeTag">⏱ 4 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 14 : CONTOH SOAL LEVEL 2 ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Level 2 • Contoh Soal</span>
+      <h2 class="title">Penerapan 4 Pertanyaan Analisis</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <table>
+        <thead><tr><th style="width:55%;">Skenario</th><th>Jawaban yang Tepat</th></tr></thead>
+        <tbody>
+          <tr><td>Jihan disuruh membersihkan kamar dalam 30 menit. Ia bingung harus mulai dari mana.</td><td class="c" style="text-align:left; color:var(--accent2);">Apa tujuan akhirnya? (kamar bersih dalam 30 menit)</td></tr>
+          <tr><td>Doni ingin belajar untuk ulangan besok. Ia sudah punya buku dan catatan.</td><td class="c" style="text-align:left; color:var(--accent2);">Apa hambatannya? (materi banyak, waktu terbatas)</td></tr>
+          <tr><td>Sari mau piknik sekolah. Ia belum tahu barang apa saja yang wajib dibawa.</td><td class="c" style="text-align:left; color:var(--accent2);">Informasi apa yang masih kurang? (perlu baca surat edaran)</td></tr>
+          <tr><td>Budi ingin menabung untuk membeli sepatu baru seharga Rp 300.000.</td><td class="c" style="text-align:left; color:var(--accent2);">Apa saja yang sudah kita punya? (uang jajan per hari)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="timeTag">⏱ 4 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 15 : KASUS ANTREAN KANTIN ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Contoh Kasus Lokal</span>
+      <h2 class="title">Antrean Kantin Sekolah</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <div class="bubble f" style="margin-bottom:16px;">
+        <span class="who">Situasi</span>
+        Saat istirahat pertama, banyak murid membeli makanan di kantin. Antrean terlihat panjang, beberapa murid terlambat kembali ke kelas, dan sebagian murid merasa bingung harus berdiri di barisan mana. Tim kelas diminta membantu memahami penyebabnya sebelum mengusulkan perbaikan.
+      </div>
       <div class="card gold f">
-        <span class="ico">🏫🍽️</span>
-        <h3>Bayangkan kamu paling belakang…</h3>
-        <p>Apa yang kamu rasakan? Apa yang kamu butuhkan?</p>
+        <h3>📋 Contoh Fakta dalam Skenario</h3>
+        <p>(1) waktu istirahat terbatas; (2) dua tempat pembayaran digunakan bergantian; (3) beberapa murid memilih makanan langsung di depan etalase; (4) jalur masuk dan keluar berdekatan.</p>
+        <p style="margin-top:8px; font-size:15px; font-style:italic;">Fakta ini berasal dari skenario latihan; guru dapat menggantinya dengan hasil pengamatan kantin sebenarnya.</p>
+      </div>
+    </div>
+    <div class="timeTag">⏱ 5 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 16 : SUBMASALAH ANTREAN ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Contoh Kasus Lokal</span>
+      <h2 class="title">Submasalah Antrean Kantin</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <table>
+        <thead><tr><th style="width:32%;">Masalah utama</th><th>Contoh submasalah untuk diperiksa</th></tr></thead>
+        <tbody>
+          <tr><td rowspan="5">Antrean kantin panjang dan alur pembelian membingungkan.</td><td><b>Alur antrean:</b> lokasi awal barisan, jalur masuk/keluar, kemungkinan saling berpapasan.</td></tr>
+          <tr><td><b>Proses memilih:</b> apakah pilihan menu sudah terlihat sebelum tiba di depan etalase?</td></tr>
+          <tr><td><b>Pembayaran:</b> jumlah titik pembayaran dan cara menyiapkan uang/kartu.</td></tr>
+          <tr><td><b>Kepadatan waktu:</b> banyak murid datang bersamaan saat istirahat.</td></tr>
+          <tr><td><b>Informasi/aturan:</b> apakah tanda antrean dan arahan mudah dipahami?</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="timeTag">⏱ 5 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 17 : KASUS PIKET KELAS ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Contoh Kasus Kedua</span>
+      <h2 class="title">Piket Kelas</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <div class="card blue f" style="margin-bottom:14px;">
+        <h3>🎯 Masalah Utama</h3>
+        <p>Ruang kelas belum siap digunakan setelah jadwal piket.</p>
+      </div>
+      <div class="card f" style="margin-bottom:14px;">
+        <h3>🔍 Submasalah yang Mungkin Diperiksa</h3>
+        <ul class="bullets" style="margin-top:10px;">
+          <li>Pembagian tugas tidak jelas</li>
+          <li>Alat kebersihan tidak tersedia/berada jauh</li>
+          <li>Jadwal piket berbenturan dengan kegiatan</li>
+          <li>Standar "bersih" belum disepakati</li>
+          <li>Pengecekan akhir belum dilakukan</li>
+        </ul>
+      </div>
+      <div class="card pink f">
+        <h3>⚠️ Catatan Penting</h3>
+        <p>Hindari langsung menyalahkan individu sebelum memeriksa bukti dan sistem pembagian tugas.</p>
       </div>
     </div>
     <div class="timeTag">⏱ 4 menit</div>
   </section>
 
-  <!-- ================= SLIDE 8 : KARTU MASALAH ================= -->
+  <!-- ================= SLIDE 18 : CONTOH PETA DEKOMPOSISI ================= -->
   <section class="slide">
     <div class="head">
-      <span class="eyebrow">Aturan Main</span>
-      <h2 class="title">Kartu Masalah: Aturan Main</h2>
+      <span class="eyebrow">Contoh Peta Dekomposisi</span>
+      <h2 class="title">Peta Antrean Kantin dalam Bentuk Teks</h2>
     </div>
-    <ul class="bullets" style="flex:1; align-content:start;">
-      <li class="f">Setiap kelompok menerima kartu fakta</li>
-      <li class="f">Kartu berisi informasi kasus</li>
-      <li class="f">Tandai fakta, <span class="hl2">bukan</span> dugaan</li>
-      <li class="f">Diskusikan bersama kelompok</li>
-      <li class="f">Tulis hasil di LKPD</li>
-    </ul>
-    <div class="card gold f" style="margin-top:16px;">
-      <h3>⚠️ Ingat</h3>
-      <p>Jangan menambah dugaan seolah-olah fakta!</p>
-    </div>
-    <div class="timeTag">⏱ 4 menit</div>
-  </section>
-
-  <!-- ================= SLIDE 9 : TUGAS KELOMPOK ================= -->
-  <section class="slide">
-    <div class="head">
-      <span class="eyebrow">Kerja Kelompok</span>
-      <h2 class="title">Tugas Kelompok Hari Ini</h2>
-    </div>
-    <div class="grid g4" style="flex:1; align-content:start;">
-      <div class="card f"><span class="ico">👥</span><h3>3–4 orang</h3><p>per kelompok</p></div>
-      <div class="card blue f"><span class="ico">🎭</span><h3>Pilih peran</h3><p>pembaca, pencatat, penyaji</p></div>
-      <div class="card gold f"><span class="ico">⏱️</span><h3>25 menit</h3><p>diskusi</p></div>
-      <div class="card pink f"><span class="ico">🗺️</span><h3>Hasil:</h3><p>peta dekomposisi</p></div>
-    </div>
-    <p class="lead f" style="margin-top:18px; text-align:center; color:var(--accent2);">
-      Minimal <b>3 submasalah</b> relevan!
-    </p>
-    <div class="timeTag">⏱ 2 menit</div>
-  </section>
-
-  <!-- ================= SLIDE 10 : CARA MEMBUAT PETA ================= -->
-  <section class="slide">
-    <div class="head">
-      <span class="eyebrow">Cara Kerja</span>
-      <h2 class="title">Cara Membuat Peta Dekomposisi</h2>
-    </div>
-    <ol class="steps" style="flex:1; align-content:start;">
-      <li class="f">Tulis masalah utama di tengah</li>
-      <li class="f">Pecah jadi 3–4 submasalah</li>
-      <li class="f">Hubungkan dengan garis/panah</li>
-      <li class="f">Beri label yang jelas</li>
-      <li class="f">Pilih 1 prioritas + alasan</li>
-    </ol>
-    <div class="timeTag">⏱ 4 menit</div>
-  </section>
-
-  <!-- ================= SLIDE 11 : CONTOH PETA ================= -->
-  <section class="slide">
-    <div class="head">
-      <span class="eyebrow">Contoh</span>
-      <h2 class="title">Contoh: Peta Antrean Kantin</h2>
-    </div>
-    <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;">
-      <div class="node f" style="font-size:20px; padding:16px 26px; background:rgba(96,165,250,.18); border-color:rgba(96,165,250,.55);">
-        😰 ANTREAN PANJANG &amp; MEMBINGUNGKAN
+    <div class="scrollable" style="flex:1;">
+      <div class="code f" style="margin-bottom:16px;">ANTREAN KANTIN PANJANG / MEMBINGUNGKAN
+├── Alur ruang: jalur masuk, jalur keluar, posisi barisan
+├── Proses memilih: informasi menu, waktu memilih
+├── Pembayaran: titik bayar, kesiapan pembayaran
+├── Waktu: kedatangan murid bersamaan, durasi istirahat
+└── Informasi: tanda antrean, arahan petugas</div>
+      <div class="card gold f">
+        <h3>💡 Catatan</h3>
+        <p>Peta ini bukan satu-satunya jawaban benar. Murid boleh mengelompokkan bagian dengan cara berbeda selama masuk akal, didukung fakta, dan tidak menghilangkan unsur penting.</p>
       </div>
-      <div class="f" style="font-size:28px; color:var(--accent); font-weight:900;">↓</div>
-      <div class="grid g4 f" style="width:100%;">
-        <div class="card"><h3>🚪 Alur ruang</h3><p>masuk/keluar</p></div>
-        <div class="card blue"><h3>🍱 Proses memilih</h3><p>info menu</p></div>
-        <div class="card gold"><h3>💳 Pembayaran</h3><p>titik bayar</p></div>
-        <div class="card pink"><h3>⏰ Waktu</h3><p>kedatangan</p></div>
-      </div>
-      <p class="lead f" style="color:var(--accent);">+ Informasi: tanda antrean, arahan petugas</p>
     </div>
     <div class="timeTag">⏱ 4 menit</div>
   </section>
 
-  <!-- ================= SLIDE 12 : WAKTUNYA BEKERJA ================= -->
+  <!-- ================= SLIDE 19 : LEVEL 3 ================= -->
   <section class="slide">
     <div class="head">
-      <span class="eyebrow">Aktivitas</span>
-      <h2 class="title">Waktunya Bekerja! 🚀</h2>
+      <span class="eyebrow">Level 3 LKPD Interaktif</span>
+      <h2 class="title">Susun Langkah Dekomposisi</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <p class="lead f" style="margin-bottom:14px;">
+        Level 3 menyajikan <span class="hl">15 skenario masalah sehari-hari</span> yang harus diurutkan langkah penyelesaiannya. Berikut beberapa contoh:
+      </p>
+      <div class="code sm f" style="margin-bottom:12px;"><b>1. PR Matematika yang Menumpuk</b>
+1. Kumpulkan semua PR dan catat deadline masing-masing
+2. Urutkan dari yang paling sulit atau paling dekat deadline
+3. Kerjakan satu bab/topik dalam satu waktu
+4. Cek kembali jawaban setelah selesai satu bagian
+5. Simpan dan siapkan untuk dikumpulkan besok</div>
+      <div class="code sm f" style="margin-bottom:12px;"><b>2. Persiapan Ulangan Harian</b>
+1. Cari tahu materi apa saja yang akan diujikan
+2. Kumpulkan semua catatan dan rangkuman terkait
+3. Bagi materi menjadi beberapa sesi belajar per hari
+4. Kerjakan latihan soal untuk menguji pemahaman
+5. Review ulang bagian yang masih sering salah</div>
+    </div>
+    <div class="timeTag">⏱ 4 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 20 : LEVEL 3 LANJUTAN ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Level 3 • Contoh Lain</span>
+      <h2 class="title">Skenario Lainnya</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <div class="code sm f" style="margin-bottom:12px;"><b>3. Kamar Tidur yang Berantakan</b>
+1. Pisahkan barang menjadi kategori (baju, buku, mainan, sampah)
+2. Buang barang yang sudah tidak terpakai
+3. Kembalikan barang ke tempat aslinya per kategori
+4. Bersihkan lantai dan meja dari debu
+5. Rapikan tempat tidur sebagai sentuhan akhir</div>
+      <div class="code sm f" style="margin-bottom:12px;"><b>4. Membuat Jadwal Belajar Mingguan</b>
+1. Catat semua kegiatan tetap (sekolah, les, ekskul)
+2. Identifikasi waktu kosong yang tersedia tiap hari
+3. Bagi waktu kosong tersebut untuk tiap mata pelajaran
+4. Prioritaskan mapel yang dirasa paling sulit
+5. Tempel jadwal di tempat yang mudah terlihat</div>
+      <div class="code sm f"><b>5. Tugas Proyek Kelompok</b>
+1. Diskusikan pembagian tugas ke setiap anggota
+2. Tentukan tenggat waktu untuk tiap bagian tugas
+3. Kerjakan bagian masing-masing secara paralel
+4. Gabungkan semua hasil kerja menjadi satu
+5. Review bersama sebelum dikumpulkan</div>
+    </div>
+    <div class="timeTag">⏱ 4 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 21 : LEVEL 4 ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Level 4 LKPD Interaktif</span>
+      <h2 class="title">Tebak Masalah</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <p class="lead f" style="margin-bottom:12px;">
+        Level 4 menyajikan <span class="hl">15 rangkaian langkah</span> yang harus ditebak judul masalahnya. Murid memilih jawaban yang benar dari 4 pilihan.
+      </p>
+      <table style="margin-bottom:14px;">
+        <thead><tr><th style="width:55%;">Langkah-langkah</th><th>Jawaban Benar</th><th>Pengecoh</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>1. Cek prakiraan cuaca sebelum berangkat → 2. Siapkan payung atau jas hujan sejak malam → 3. Bungkus buku dan alat elektronik agar tidak basah → 4. Berangkat lebih awal untuk antisipasi jalan tergenang → 5. Pilih rute yang lebih aman</td>
+            <td style="color:var(--accent); font-weight:800;">Perjalanan ke Sekolah Saat Hujan</td>
+            <td>Persiapan Piknik Sekolah, Merapikan Tas Sekolah, Menghafal Kosakata</td>
+          </tr>
+          <tr>
+            <td>1. Tentukan tanggal, tempat, dan tema acara → 2. Buat daftar tamu yang akan diundang → 3. Susun anggaran untuk makanan dan dekorasi → 4. Bagi tugas persiapan ke teman-teman lain → 5. Cek ulang semua persiapan H-1</td>
+            <td style="color:var(--accent); font-weight:800;">Merencanakan Ulang Tahun Teman</td>
+            <td>Tugas Proyek Kelompok, Membuat Video Pendek, Mengatur Uang Jajan</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="lead f" style="text-align:center;">Skor maksimal Level 4: <span class="hl2">20 poin</span></p>
+    </div>
+    <div class="timeTag">⏱ 4 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 22 : LEVEL 5 ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Level 5 LKPD Interaktif</span>
+      <h2 class="title">Pola Dekomposisi</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <p class="lead f" style="margin-bottom:12px;">
+        Level 5 melatih murid menemukan pola umum langkah dekomposisi. Terdapat 5 slot yang harus diisi dengan kata yang tepat dari word bank.
+      </p>
+      <table style="margin-bottom:14px;">
+        <thead><tr><th style="width:14%;">Slot</th><th>Jawaban Benar</th><th>Bahasa Inggris</th></tr></thead>
+        <tbody>
+          <tr><td class="c">1</td><td>kumpulkan</td><td><i>gather information</i></td></tr>
+          <tr><td class="c">2</td><td>pilah/bagi</td><td><i>sort / divide</i></td></tr>
+          <tr><td class="c">3</td><td>kerjakan bertahap</td><td><i>do gradually</i></td></tr>
+          <tr><td class="c">4</td><td>periksa</td><td><i>check</i></td></tr>
+          <tr><td class="c">5</td><td>selesaikan</td><td><i>finish</i></td></tr>
+        </tbody>
+      </table>
+      <div class="card gold f">
+        <h3>📝 Word Bank</h3>
+        <p>kumpulkan, pilah/bagi, kerjakan bertahap, periksa, selesaikan, abaikan, tunda, lupakan, serahkan.</p>
+      </div>
+      <p class="lead f" style="margin-top:12px; text-align:center;">Skor maksimal Level 5: <span class="hl2">20 poin</span></p>
+    </div>
+    <div class="timeTag">⏱ 4 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 23 : KAITAN DENGAN MATERI LAIN ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Lintas Mata Pelajaran</span>
+      <h2 class="title">Kaitan dengan Materi Lain</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <ul class="bullets">
+        <li class="f"><b>Bahasa Indonesia:</b> memahami informasi dari cerita kasus, membedakan fakta dan pendapat, serta menyampaikan hasil diskusi dengan runtut.</li>
+        <li class="f"><b>Matematika:</b> mengelompokkan data sederhana, menghitung waktu antrean atau jumlah petugas bila data tersedia, dan membaca tabel.</li>
+        <li class="f"><b>Pendidikan Pancasila:</b> musyawarah, tanggung jawab bersama, keadilan dalam pembagian tugas, dan menghargai pendapat.</li>
+        <li class="f"><b>IPA/IPS dan kehidupan sehari-hari:</b> mengamati hubungan antara ruang, waktu, perilaku, dan aturan dalam suatu kegiatan.</li>
+        <li class="f"><b>Informatika lanjutan:</b> dekomposisi menjadi dasar untuk pengenalan pola, abstraksi, dan penyusunan langkah/algoritma pada pertemuan berikutnya.</li>
+      </ul>
+    </div>
+    <div class="timeTag">⏱ 3 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 24 : SUMBER BELAJAR ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Sumber Belajar</span>
+      <h2 class="title">Sumber Belajar</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <ul class="bullets gold">
+        <li class="f">LKPD Interaktif "Berpikir Komputasional" — https://fnr19bks.github.io/lkpd-berpikir-komputasional/</li>
+        <li class="f">Skenario kasus dan kartu masalah yang disediakan guru (LKPD pada modul ini).</li>
+        <li class="f">Pengamatan singkat lingkungan kantin atau jadwal piket, bila memungkinkan dan aman.</li>
+        <li class="f">Papan tulis/proyektor, kertas A3 atau lembar kerja, sticky notes/kartu, spidol, serta laptop/PC untuk membuat diagram digital sebagai pilihan.</li>
+        <li class="f">Dokumen CP/kurikulum Informatika yang digunakan satuan pendidikan; guru menyesuaikan redaksi CP dengan dokumen resmi yang berlaku di sekolah.</li>
+      </ul>
+    </div>
+    <div class="timeTag">⏱ 3 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 25 : MEDIA DAN ALAT ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Media dan Alat</span>
+      <h2 class="title">Media dan Alat Pembelajaran</h2>
     </div>
     <div class="grid g2" style="flex:1; align-content:start;">
+      <div class="card f">
+        <h3>💻 LKPD Interaktif Berbasis Web</h3>
+        <p>https://fnr19bks.github.io/lkpd-berpikir-komputasional/ (dapat diakses melalui laptop/PC sekolah, atau proyektor untuk demonstrasi bersama).</p>
+      </div>
+      <div class="card blue f">
+        <h3>🧘 Mode Latihan</h3>
+        <p>Tanpa timer, cocok untuk pembelajaran santai dan pendalaman konsep.</p>
+      </div>
+      <div class="card gold f">
+        <h3>⚡ Mode Tantangan</h3>
+        <p>Timer 90 detik per level, bonus +2 poin jika sisa waktu &gt;30 detik.</p>
+      </div>
+      <div class="card pink f">
+        <h3>🎯 Alur Petualangan</h3>
+        <p>Menyelesaikan 5 level secara berurutan.</p>
+      </div>
+      <div class="card f">
+        <h3>🎲 Alur Bebas</h3>
+        <p>Memilih level yang ingin dimainkan.</p>
+      </div>
+      <div class="card blue f">
+        <h3>👩‍🏫 Mode Guru</h3>
+        <p>Guru dapat membuat soal sendiri dalam format JSON, menyimpan di browser, dan membagikan melalui URL.</p>
+      </div>
+      <div class="card gold f">
+        <h3>🏆 Leaderboard Lokal</h3>
+        <p>Menampilkan 5 skor terbaik di browser.</p>
+      </div>
+      <div class="card pink f">
+        <h3>📥 Hasil Akhir</h3>
+        <p>Dapat diunduh dan dikumpulkan ke guru, dilengkapi refleksi opsional.</p>
+      </div>
+    </div>
+    <div class="timeTag">⏱ 4 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 26 : MEDIA TAMBAHAN ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Media dan Alat</span>
+      <h2 class="title">Media Pendukung Lainnya</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
       <ul class="bullets">
-        <li class="f">Diskusi kelompok 25 menit</li>
-        <li class="f">Gambar peta di kertas A3</li>
-        <li class="f">Tulis nama anggota</li>
-        <li class="f">Siapkan presentasi 60–90 detik</li>
-        <li class="f">Periksa: ada tumpang tindih?</li>
+        <li class="f">Slide satu gambar situasi antrean kantin atau ilustrasi buatan guru.</li>
+        <li class="f">Kartu masalah (potongan kertas) berisi fakta/gejala dari kasus kantin dan piket.</li>
+        <li class="f">LKPD cetak, kertas A3/A4, spidol/pensil, sticky notes; perangkat digital bersifat pilihan.</li>
+        <li class="f">Proyektor untuk menampilkan contoh peta dekomposisi.</li>
+        <li class="f">Timer/jam untuk mengelola waktu diskusi.</li>
+        <li class="f">Alternatif aksesibilitas: teks berhuruf besar, pembacaan instruksi, ikon sederhana, pilihan jawaban lisan, serta pasangan pendamping.</li>
       </ul>
-      <div class="card blue f" style="text-align:center; display:flex; flex-direction:column; justify-content:center;">
-        <div style="font-size:68px; font-weight:900; line-height:1; color:var(--accent2);">25:00</div>
-        <p style="margin-top:12px;">Mulai bersama: 3… 2… 1… GO!</p>
+    </div>
+    <div class="timeTag">⏱ 3 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 27 : LANGKAH KEGIATAN 1 ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Langkah Kegiatan • 80 menit</span>
+      <h2 class="title">Pendahuluan &amp; Memahami (25 menit)</h2>
+    </div>
+    <div class="grid g2" style="flex:1; align-content:start;">
+      <div class="card f">
+        <h3>🟢 Pendahuluan — 10 menit</h3>
+        <p><b>Guru:</b> Menyapa dan membangun suasana aman. Menampilkan ilustrasi antrean kantin atau membuka LKPD interaktif di proyektor. Menyampaikan tujuan, urutan kegiatan, kriteria keberhasilan, dan pilihan cara berkontribusi. Mengajukan pertanyaan diagnostik singkat.</p>
+        <p style="margin-top:8px;"><b>Murid:</b> Mengamati, menyampaikan pengalaman, memilih cara berpartisipasi (lisan/tulisan/gambar), dan menyebutkan dugaan awal.</p>
+        <p style="margin-top:8px; font-size:15px;"><i>Berkesadaran, Bermakna, Menggembirakan, Olah hati/rasa. Diagnostik awal.</i></p>
+      </div>
+      <div class="card blue f">
+        <h3>🔵 Memahami — 15 menit</h3>
+        <p><b>Guru:</b> Menyajikan masalah PBL: antrean kantin panjang dan membingungkan. Membagikan kartu fakta/gejala. Memodelkan perbedaan masalah utama, fakta, dugaan, dan submasalah menggunakan contoh sederhana. Memastikan semua memahami instruksi LKPD interaktif.</p>
+        <p style="margin-top:8px;"><b>Murid:</b> Membaca/mendengarkan kasus, menandai fakta, mengajukan pertanyaan, dan merumuskan masalah utama bersama kelompok.</p>
+        <p style="margin-top:8px; font-size:15px;"><i>Olah pikir: memilah fakta dan dugaan. Formatif melalui pertanyaan cek pemahaman.</i></p>
       </div>
     </div>
     <div class="timeTag">⏱ 25 menit</div>
   </section>
 
-  <!-- ================= SLIDE 13 : BERBAGI HASIL ================= -->
+  <!-- ================= SLIDE 28 : LANGKAH KEGIATAN 2 ================= -->
   <section class="slide">
     <div class="head">
-      <span class="eyebrow">Presentasi</span>
-      <h2 class="title">Berbagi Hasil</h2>
-    </div>
-    <ul class="bullets" style="flex:1; align-content:start;">
-      <li class="f">2–3 kelompok presentasi</li>
-      <li class="f">1 menit per kelompok</li>
-      <li class="f">Kelompok lain beri tanggapan</li>
-      <li class="f">1 apresiasi + 1 pertanyaan/saran</li>
-      <li class="f">Soroti variasi pengelompokan</li>
-    </ul>
-    <div class="grid g2 f" style="margin-top:16px;">
-      <div class="card">
-        <h3>👏 Apresiasi</h3>
-        <p>Apa yang sudah bagus?</p>
-      </div>
-      <div class="card gold">
-        <h3>💡 Saran</h3>
-        <p>Apa yang bisa ditambah?</p>
-      </div>
-    </div>
-    <div class="timeTag">⏱ 10 menit</div>
-  </section>
-
-  <!-- ================= SLIDE 14 : CEK PEMAHAMAN ================= -->
-  <section class="slide">
-    <div class="head">
-      <span class="eyebrow">Cek Pemahaman</span>
-      <h2 class="title">Cek Pemahaman — Kuis Cepat</h2>
+      <span class="eyebrow">Langkah Kegiatan • 80 menit</span>
+      <h2 class="title">Mengaplikasi &amp; Berbagi Hasil (35 menit)</h2>
     </div>
     <div class="grid g2" style="flex:1; align-content:start;">
-      <ol class="steps">
-        <li class="f">Apa itu dekomposisi?</li>
-        <li class="f">Mengapa bedakan fakta &amp; dugaan?</li>
-        <li class="f">Sebutkan 3 submasalah "kelas kotor"</li>
-      </ol>
-      <div class="card gold f" style="text-align:center; display:flex; flex-direction:column; justify-content:center; border-style:dashed; border-width:2px; border-color:rgba(251,146,60,.55);">
-        <div style="font-size:52px; line-height:1; margin-bottom:10px;">🤔</div>
-        <h3>Jawab dengan jari 1–3!</h3>
-        <p>Semua angkat tangan, ya!</p>
+      <div class="card gold f">
+        <h3>🟠 Mengaplikasi — 25 menit</h3>
+        <p><b>Guru:</b> Membentuk pasangan/kelompok 3-4 orang. Memberi LKPD dan checklist. Mengarahkan murid untuk mengakses LKPD interaktif dan menyelesaikan Level 1–5 sesuai alur yang dipilih. Berkeliling memberi pertanyaan penuntun, bukan jawaban jadi.</p>
+        <p style="margin-top:8px;"><b>Murid:</b> Mengelompokkan kartu menjadi submasalah, membuat peta dekomposisi, memberi alasan/bukti, lalu menentukan satu bagian prioritas. Menyelesaikan level-level dalam LKPD interaktif secara individu atau berpasangan.</p>
+        <p style="margin-top:8px; font-size:15px;"><i>Kolaborasi dan komunikasi. Formatif: observasi dan umpan balik.</i></p>
+      </div>
+      <div class="card f">
+        <h3>🟣 Berbagi Hasil — 10 menit</h3>
+        <p><b>Guru:</b> Mengundang 2-3 kelompok berbagai cepat (1 menit per kelompok + tanggapan). Menyoroti variasi pengelompokan yang beralasan. Menampilkan leaderboard lokal atau hasil akhir beberapa murid.</p>
+        <p style="margin-top:8px;"><b>Murid:</b> Menjelaskan peta dan alasan; kelompok lain memberi satu apresiasi dan satu pertanyaan/saran. Membagikan skor dan refleksi dari LKPD interaktif.</p>
+        <p style="margin-top:8px; font-size:15px;"><i>Menggembirakan: apresiasi usaha. Guru mencatat bukti penalaran kritis.</i></p>
       </div>
     </div>
-    <div class="timeTag">⏱ 5 menit</div>
+    <div class="timeTag">⏱ 35 menit</div>
   </section>
 
-  <!-- ================= SLIDE 15 : TIPS & KESALAHAN ================= -->
+  <!-- ================= SLIDE 29 : LANGKAH KEGIATAN 3 ================= -->
   <section class="slide">
     <div class="head">
-      <span class="eyebrow">Peringatan</span>
-      <h2 class="title">Tips &amp; Kesalahan Umum</h2>
+      <span class="eyebrow">Langkah Kegiatan • 80 menit</span>
+      <h2 class="title">Merefleksi &amp; Penutup (20 menit)</h2>
     </div>
     <div class="grid g2" style="flex:1; align-content:start;">
       <div class="card pink f">
-        <h3>❌ HINDARI</h3>
-        <p>• Submasalah terlalu besar</p>
-        <p>• Saling tumpang tindih</p>
-        <p>• Lupa masalah utama</p>
-        <p>• Menyalahkan orang tanpa bukti</p>
+        <h3>🟡 Merefleksi — 10 menit</h3>
+        <p><b>Guru:</b> Mengajak murid memeriksa kembali: apakah submasalah relevan, didukung fakta, dan dapat ditindaklanjuti? Membagikan exit ticket. Mengingatkan murid untuk mengisi refleksi di LKPD interaktif (opsional).</p>
+        <p style="margin-top:8px;"><b>Murid:</b> Merevisi satu bagian peta jika perlu dan mengisi exit ticket: bagian tersulit dan alasannya; satu hal yang dipahami; langkah berikutnya. Mengisi refleksi di LKPD interaktif.</p>
+        <p style="margin-top:8px; font-size:15px;"><i>Berkesadaran: memantau proses belajar. Asesmen refleksi.</i></p>
       </div>
       <div class="card f">
-        <h3>✅ LAKUKAN</h3>
-        <p>• Logis &amp; jelas</p>
-        <p>• Didukung fakta</p>
-        <p>• Setiap bagian bisa ditindaklanjuti</p>
-        <p>• Bisa dijelaskan ke orang lain</p>
+        <h3>⚪ Penutup — 10 menit</h3>
+        <p><b>Guru:</b> Merangkum konsep dekomposisi, menghubungkan dengan piket/rumah dan materi berikutnya. Menyampaikan tindak lanjut dan apresiasi. Menjelaskan cara mengunduh hasil LKPD interaktif untuk dikumpulkan.</p>
+        <p style="margin-top:8px;"><b>Murid:</b> Menyampaikan satu kalimat kesimpulan atau menunjukkan bagian peta yang paling membantu. Merapikan alat dan mengembalikan kartu. Mengunduh hasil LKPD interaktif.</p>
+        <p style="margin-top:8px; font-size:15px;"><i>Bermakna: transfer ke keseharian. Menggembirakan: penutup positif.</i></p>
       </div>
+    </div>
+    <div class="timeTag">⏱ 20 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 30 : PERTANYAAN PENUNTUN ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Pertanyaan Penuntun</span>
+      <h2 class="title">Saat Guru Berkeliling</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <div class="qBox f" style="margin-bottom:12px;"><p>"Apa masalah utama yang kalian coba pahami?"</p></div>
+      <div class="qBox f" style="margin-bottom:12px;"><p>"Kartu/fakta mana yang mendukung bagian ini?"</p></div>
+      <div class="qBox f" style="margin-bottom:12px;"><p>"Apakah dua submasalah ini sebenarnya sama?"</p></div>
+      <div class="qBox f" style="margin-bottom:12px;"><p>"Bagian mana yang dapat diperiksa secara terpisah?"</p></div>
+      <div class="qBox f"><p>"Mengapa kalian memilih bagian itu sebagai prioritas?"</p></div>
     </div>
     <div class="timeTag">⏱ 4 menit</div>
   </section>
 
-  <!-- ================= SLIDE 16 : REFLEKSI ================= -->
+  <!-- ================= SLIDE 31 : DIFERENSIASI UDL ================= -->
   <section class="slide">
     <div class="head">
-      <span class="eyebrow">Aktivitas Reflektif</span>
-      <h2 class="title">Refleksi &amp; Exit Ticket</h2>
+      <span class="eyebrow">Diferensiasi dan Inklusivitas (UDL)</span>
+      <h2 class="title">Konten dan Proses</h2>
     </div>
-    <div class="grid g2" style="flex:1; align-content:start;">
-      <ul class="bullets">
-        <li class="f">Apa hal baru yang dipelajari?</li>
-        <li class="f">Bagian mana paling sulit?</li>
-        <li class="f">Mengapa itu sulit?</li>
-        <li class="f">Di mana bisa dipakai?</li>
-      </ul>
-      <div class="card gold f" style="text-align:center; display:flex; flex-direction:column; justify-content:center;">
-        <h3>Seberapa paham?</h3>
-        <div style="font-size:38px; margin:8px 0;">😕 😐 😀 😄 🤩</div>
-        <p>1 &nbsp; 2 &nbsp; 3 &nbsp; 4 &nbsp; 5</p>
-      </div>
+    <div class="scrollable" style="flex:1;">
+      <table>
+        <thead><tr><th style="width:14%;">Aspek</th><th>Dukungan fondasi</th><th>Tantangan/pengayaan</th><th>Pilihan akses dan partisipasi</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><b>Konten</b></td>
+            <td>Kasus sederhana dengan 3-4 kartu fakta; contoh peta setengah jadi; kosakata kunci dan gambar. LKPD interaktif Level 1–2 dengan pendampingan.</td>
+            <td>Skenario lebih kompleks: antrean saat beberapa kelas istirahat bersamaan, keterbatasan ruang, atau data waktu layanan. LKPD interaktif Level 4–5 tanpa pendampingan, mode Tantangan.</td>
+            <td>Informasi tersedia sebagai teks, dibacakan, dan/atau visual.</td>
+          </tr>
+          <tr>
+            <td><b>Proses</b></td>
+            <td>Tutorial langkah demi langkah; checklist; pasangan; kartu kategori (ruang, waktu, proses, informasi). Mode Latihan tanpa timer.</td>
+            <td>Menguji apakah submasalah tumpang tindih; membandingkan dua cara dekomposisi; menyusun pertanyaan data yang perlu dikumpulkan. Mode Tantangan dengan timer 90 detik.</td>
+            <td>Kerja individual, pasangan, atau tim; peran fleksibel (pembaca, pengelompok, pencatat, penyaji).</td>
+          </tr>
+          <tr>
+            <td><b>Produk</b></td>
+            <td>Peta bercabang dengan kata kunci atau gambar; jawaban lisan dapat diterima. Hasil LKPD interaktif dapat diunduh dan dikumpulkan.</td>
+            <td>Peta digital, simulasi alur, atau rekomendasi prioritas disertai bukti. Mode Guru: murid dapat membuat soal sendiri.</td>
+            <td>Kertas, diagram digital, presentasi singkat, rekaman suara, atau penjelasan langsung.</td>
+          </tr>
+          <tr>
+            <td><b>Lingkungan</b></td>
+            <td>Tempat duduk dekat guru/ruang lebih tenang; instruksi satu per satu; waktu tambahan bila diperlukan. Pendampingan saat mengakses LKPD interaktif.</td>
+            <td>Tugas fasilitator diskusi atau pemeriksa konsistensi peta. Membantu teman yang kesulitan menggunakan LKPD interaktif.</td>
+            <td>Rotasi alat yang teratur; materi berhuruf besar/kontras jelas; tidak mewajibkan penggunaan perangkat pribadi.</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <div class="timeTag">⏱ 5 menit</div>
   </section>
 
-  <!-- ================= SLIDE 17 : ASESMEN ================= -->
+  <!-- ================= SLIDE 32 : PRINSIP UDL ================= -->
   <section class="slide">
     <div class="head">
-      <span class="eyebrow">Asesmen</span>
-      <h2 class="title">Asesmen &amp; Tindak Lanjut</h2>
+      <span class="eyebrow">Prinsip UDL</span>
+      <h2 class="title">Beragam Cara, Satu Tujuan</h2>
     </div>
-    <ul class="bullets" style="flex:1; align-content:start;">
-      <li class="f">Formatif: observasi + peta dekomposisi</li>
-      <li class="f">Sumatif: peta + kuis + exit ticket</li>
-      <li class="f">Rubrik skala 1–4 (5 aspek)</li>
-      <li class="f">Penguatan: kasus piket, 3 kartu</li>
-      <li class="f">Pengayaan: kumpulkan data waktu</li>
-      <li class="f">Lanjut: pola, abstraksi, algoritma</li>
-    </ul>
+    <div class="scrollable" style="flex:1;">
+      <p class="lead f" style="margin-bottom:16px;">
+        Sediakan beragam cara menerima informasi, menunjukkan pemahaman, dan terlibat dalam kegiatan.
+      </p>
+      <div class="card gold f">
+        <h3>🎯 Tujuan Inti Tidak Berubah</h3>
+        <p>Penyesuaian tidak mengubah tujuan inti, yaitu mengurai masalah menjadi bagian relevan dan menjelaskan alasannya.</p>
+      </div>
+    </div>
+    <div class="timeTag">⏱ 3 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 33 : LKPD MISI ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">LKPD • Misi Kelompok</span>
+      <h2 class="title">Misi Kelompok</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <div class="bubble f" style="margin-bottom:16px;">
+        <span class="who">Misi</span>
+        Bantu sekolah memahami masalah antrean kantin. Jangan langsung menyalahkan orang atau memilih solusi. Tugas pertama kalian adalah memecah masalah menjadi bagian-bagian yang lebih kecil berdasarkan informasi yang tersedia.
+      </div>
+      <div class="card blue f">
+        <h3>💡 Ingat</h3>
+        <p>Analisis berdasarkan fakta, bukan dugaan. Gunakan kartu kasus sebagai sumber informasi utama.</p>
+      </div>
+    </div>
+    <div class="timeTag">⏱ 3 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 34 : KARTU KASUS 1-4 ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">LKPD • Kartu Kasus</span>
+      <h2 class="title">Kartu Kasus (1–4)</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <table>
+        <thead><tr><th style="width:12%;">Kartu</th><th>Informasi kasus</th></tr></thead>
+        <tbody>
+          <tr><td class="c">1</td><td>Saat bel istirahat berbunyi, banyak murid menuju kantin pada waktu hampir bersamaan.</td></tr>
+          <tr><td class="c">2</td><td>Sebagian murid baru memilih makanan ketika sudah berada di depan etalase.</td></tr>
+          <tr><td class="c">3</td><td>Barisan pembeli kadang melebar hingga menghalangi jalan murid yang keluar.</td></tr>
+          <tr><td class="c">4</td><td>Murid tidak selalu melihat tanda tempat mulai mengantre.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="timeTag">⏱ 3 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 35 : KARTU KASUS 5-8 ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">LKPD • Kartu Kasus</span>
+      <h2 class="title">Kartu Kasus (5–8)</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <table>
+        <thead><tr><th style="width:12%;">Kartu</th><th>Informasi kasus</th></tr></thead>
+        <tbody>
+          <tr><td class="c">5</td><td>Pembayaran dilakukan di satu titik pada jam ramai.</td></tr>
+          <tr><td class="c">6</td><td>Waktu istirahat terbatas; beberapa murid khawatir terlambat masuk kelas.</td></tr>
+          <tr><td class="c">7</td><td>Ada murid yang sudah menyiapkan uang sebelum tiba di kasir, tetapi ada juga yang baru mencari uang saat membayar.</td></tr>
+          <tr><td class="c">8</td><td>Belum ada pengamatan waktu tunggu pada tiap tahap pembelian.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="timeTag">⏱ 3 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 36 : LANGKAH KERJA LKPD ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">LKPD • Langkah Kerja</span>
+      <h2 class="title">Langkah Kerja Kelompok</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <ol class="steps">
+        <li class="f">Baca semua kartu. Tandai informasi yang merupakan fakta dalam skenario. Jangan menambahkan dugaan seolah-olah fakta.</li>
+        <li class="f">Tulis satu kalimat masalah utama. Hindari kalimat yang menyalahkan orang.</li>
+        <li class="f">Kelompokkan kartu yang berhubungan. Beri nama kelompok/submasalah, misalnya alur ruang, proses memilih, pembayaran, waktu, atau informasi.</li>
+        <li class="f">Buat peta dekomposisi. Letakkan masalah utama di bagian atas/tengah, lalu hubungan submasalah dengan garis/panah.</li>
+        <li class="f">Pilih satu submasalah yang perlu diperiksa lebih dahulu. Jelaskan alasan berdasarkan fakta.</li>
+        <li class="f">Periksa kembali: apakah ada submasalah yang sama/berulang? Apakah semua bagian masih berhubungan dengan masalah utama?</li>
+        <li class="f">Siapkan penjelasan 60–90 detik.</li>
+      </ol>
+    </div>
     <div class="timeTag">⏱ 4 menit</div>
   </section>
 
-  <!-- ================= SLIDE 18 : PENUTUP ================= -->
+  <!-- ================= SLIDE 37 : LEMBAR ANALISIS ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">LKPD • Lembar Analisis</span>
+      <h2 class="title">Lembar Analisis Kelompok</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <table>
+        <thead><tr><th style="width:45%;">Pertanyaan</th><th>Jawaban kelompok</th></tr></thead>
+        <tbody>
+          <tr><td>1. Apa masalah utama yang kalian rumuskan?</td><td></td></tr>
+          <tr><td>2. Sebutkan minimal tiga submasalah.</td><td>1. _______________<br>2. _______________<br>3. _______________</td></tr>
+          <tr><td>3. Kartu/fakta mana yang mendukung submasalah tersebut?</td><td></td></tr>
+          <tr><td>4. Bagaimana hubungan antarbagian? (urutan/sebab-akibat/keterkaitan)</td><td></td></tr>
+          <tr><td>5. Bagian mana yang diprioritaskan untuk diperiksa? Mengapa?</td><td></td></tr>
+          <tr><td>6. Informasi tambahan apa yang perlu dikumpulkan sebelum mengusulkan solusi?</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="timeTag">⏱ 4 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 38 : RUANG PETA & CHECKLIST ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">LKPD • Peta &amp; Checklist</span>
+      <h2 class="title">Ruang Peta Dekomposisi &amp; Checklist</h2>
+    </div>
+    <div class="grid g2" style="flex:1; align-content:start;">
+      <div class="card f">
+        <h3>🗺️ Ruang Peta</h3>
+        <p><b>Masalah utama:</b> Tuliskan masalah utama di sini.</p>
+        <p style="margin-top:8px;"><b>Submasalah 1 / 2 / 3:</b> Gambarkan panah/garis hubungan pada kertas terpisah atau gunakan ruang kosong. Jika membuat diagram digital, lampirkan tangkapan layar/cetak hasilnya.</p>
+      </div>
+      <div class="card gold f">
+        <h3>✅ Checklist Sebelum Dikumpulkan</h3>
+        <p>☐ Masalah utama ditulis jelas dan tidak menyalahkan individu.</p>
+        <p>☐ Ada sedikitnya tiga submasalah yang relevan.</p>
+        <p>☐ Submasalah didukung fakta dari kartu atau pengamatan.</p>
+        <p>☐ Hubungan antarbagiannya ditunjukkan.</p>
+        <p>☐ Ada alasan untuk prioritas yang dipilih.</p>
+        <p>☐ Semua anggota berkontribusi dan hasil dapat dijelaskan.</p>
+      </div>
+    </div>
+    <div class="timeTag">⏱ 4 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 39 : TANTANGAN PILIHAN ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">LKPD • Pengayaan</span>
+      <h2 class="title">Tantangan Pilihan</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <div class="card pink f" style="margin-bottom:14px;">
+        <h3>🎯 Tantangan</h3>
+        <p>Bayangkan kantin memiliki dua jalur pembayaran tetapi ruangnya sempit. Buat versi peta baru.</p>
+      </div>
+      <div class="card blue f">
+        <h3>❓ Pertanyaan Lanjutan</h3>
+        <p>Apakah muncul submasalah tambahan? Data apa yang harus dikumpulkan untuk mengetahui apakah perubahan jalur membantu?</p>
+      </div>
+    </div>
+    <div class="timeTag">⏱ 3 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 40 : EXIT TICKET ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">LKPD • Exit Ticket Individu</span>
+      <h2 class="title">Exit Ticket</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <table>
+        <thead><tr><th style="width:50%;">Pernyataan</th><th>Jawaban murid</th></tr></thead>
+        <tbody>
+          <tr><td>Bagian paling sulit bagi saya saat memecah masalah adalah...</td><td></td></tr>
+          <tr><td>Alasannya...</td><td></td></tr>
+          <tr><td>Satu hal yang sekarang saya pahami tentang dekomposisi...</td><td></td></tr>
+          <tr><td>Pada masalah lain, saya akan mencoba...</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="timeTag">⏱ 3 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 41 : LKPD INTERAKTIF PETUNJUK ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">LKPD Interaktif • Petunjuk</span>
+      <h2 class="title">Petunjuk Penggunaan</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <ol class="steps">
+        <li class="f">Buka URL https://fnr19bks.github.io/lkpd-berpikir-komputasional/ di browser laptop/PC.</li>
+        <li class="f">Masukkan nama lengkap pada kolom yang tersedia.</li>
+        <li class="f">Pilih Mode Belajar: 🧘 Mode Latihan (tanpa timer) atau ⚡ Mode Tantangan (90 detik per level).</li>
+        <li class="f">Pilih Alur: 🎯 Petualangan (urut dari Level 1–5) atau 🎲 Bebas (pilih level).</li>
+        <li class="f">Klik ▶ Mulai Bermain.</li>
+        <li class="f">Selesaikan 5 level: Level 1 — Kenali 4 Keterampilan; Level 2 — 4 Pertanyaan Analisis; Level 3 — Susun Dekomposisi; Level 4 — Tebak Masalah; Level 5 — Pola Dekomposisi.</li>
+        <li class="f">Setelah selesai, lihat Hasil Akhir, isi Refleksi (opsional), dan klik 📥 Download Hasil untuk mengunduh dan mengumpulkan ke guru.</li>
+        <li class="f">Guru dapat menggunakan Mode Guru untuk membuat soal kustom dan membagikannya melalui URL.</li>
+      </ol>
+    </div>
+    <div class="timeTag">⏱ 4 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 42 : ASESMEN RENCANA ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Asesmen</span>
+      <h2 class="title">Rencana Asesmen</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <table>
+        <thead><tr><th style="width:18%;">Jenis/waktu</th><th>Teknik dan instrumen</th><th>Bukti yang dikumpulkan</th><th>Tindak lanjut</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><b>Diagnostik</b><br>awal (5 menit dalam pendahuluan)</td>
+            <td>Tanya jawab cepat: "Apa yang mungkin membuat antrean panjang?" "Apa bedanya fakta dan dugaan?"</td>
+            <td>Pengetahuan awal, pengalaman, kosakata, dan kebutuhan dukungan.</td>
+            <td>Kelompokkan dukungan; jelaskan istilah dengan contoh bila diperlukan. Tidak untuk nilai akhir.</td>
+          </tr>
+          <tr>
+            <td><b>Formatif</b><br>memahami dan mengaplikasi</td>
+            <td>Observasi diskusi, pemeriksaan kartu yang dikelompokkan, pertanyaan penuntun, umpan balik pada draf peta. Pemantauan progres level di LKPD interaktif.</td>
+            <td>Ketepatan rumusan masalah, relevansi submasalah, penggunaan fakta, partisipasi. Skor per level dalam LKPD interaktif.</td>
+            <td>Berikan petunjuk bertahap; minta murid menggabungkan bagian yang tumpang tindih atau menambah bukti. Arahkan ke mode Latihan jika kesulitan.</td>
+          </tr>
+          <tr>
+            <td><b>Sumatif</b><br>akhir pertemuan</td>
+            <td>Produk peta dekomposisi + penjelasan singkat; kuis 3 pertanyaan; exit ticket. Hasil unduhan LKPD interaktif (skor total 100).</td>
+            <td>Peta/diagram, alasan dan bukti, jawaban kuis, refleksi. File hasil LKPD interaktif.</td>
+            <td>Gunakan rubrik skala 1-4; tentukan penguatan atau pengayaan pertemuan berikutnya.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="timeTag">⏱ 4 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 43 : KUIS PEMAHAMAN ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Asesmen • Kuis</span>
+      <h2 class="title">Kuis Pemahaman</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <div class="qBox f" style="margin-bottom:12px;">
+        <h4>1.</h4>
+        <p>Jelaskan dengan bahasamu sendiri apa yang dimaksud memecah masalah (dekomposisi).</p>
+        <p class="ans">Panduan: menguraikan masalah besar menjadi bagian lebih kecil agar mudah dipahami/ditangani.</p>
+      </div>
+      <div class="qBox f" style="margin-bottom:12px;">
+        <h4>2.</h4>
+        <p>Masalah: "Kelas sering belum bersih saat pelajaran dimulai." Tuliskan tiga submasalah yang masuk akal untuk diperiksa.</p>
+        <p class="ans">Panduan: misalnya pembagian tugas, ketersediaan alat, jadwal, standar kebersihan, pengecekan—jawaban lain diterima bila relevan.</p>
+      </div>
+      <div class="qBox f">
+        <h4>3.</h4>
+        <p>Mengapa kita perlu membedakan fakta dan dugaan sebelum menyusun peta dekomposisi?</p>
+        <p class="ans">Panduan: agar analisis tidak didasarkan pada asumsi atau menyalahkan pihak tertentu tanpa bukti.</p>
+      </div>
+    </div>
+    <div class="timeTag">⏱ 4 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 44 : RUBRIK PENILAIAN ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Asesmen • Rubrik</span>
+      <h2 class="title">Rubrik Penilaian Analitik Skala 1–4</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <table>
+        <thead><tr><th style="width:14%;">Aspek</th><th>4 — Sangat berkembang</th><th>3 — Berkembang sesuai harapan</th><th>2 — Mulai berkembang</th><th>1 — Perlu bimbingan</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><b>Pengetahuan</b><br>(kuis/pertanyaan)</td>
+            <td>Menjelaskan konsep tepat dengan kata sendiri dan menjawab seluruh butir dengan alasan relevan.</td>
+            <td>Menjelaskan konsep benar; sebagian besar jawaban tepat.</td>
+            <td>Pemahaman sebagian; masih tertukar antara masalah utama dan submasalah.</td>
+            <td>Belum dapat menjelaskan konsep meski telah diberi contoh/prompt.</td>
+          </tr>
+          <tr>
+            <td><b>Keterampilan</b><br>(produk/praktik)</td>
+            <td>Peta jelas, ≥4 submasalah relevan, hubungan logis, didukung fakta, dan prioritas beralasan. Skor LKPD interaktif ≥90.</td>
+            <td>Peta memuat ≥3 submasalah relevan, hubungan cukup jelas, ada dukungan fakta. Skor LKPD interaktif 70–89.</td>
+            <td>Peta memuat 1-2 submasalah relevan atau hubungan/bukti belum jelas; perlu arahan. Skor LKPD interaktif 50–69.</td>
+            <td>Peta belum menunjukkan pemecahan yang relevan atau belum selesai meski dibimbing. Skor LKPD interaktif &lt;50.</td>
+          </tr>
+          <tr>
+            <td><b>Kolaborasi</b><br>(observasi)</td>
+            <td>Berbagi peran secara adil, mendengar, mengajak anggota, dan membantu kelompok mencapai kesepakatan.</td>
+            <td>Berpartisipasi dan menghargai pendapat; peran cukup berjalan.</td>
+            <td>Partisipasi belum konsisten atau perlu diingatkan untuk mendengar/berbagi tugas.</td>
+            <td>Jarang terlibat atau menghambat kerja bersama meski sudah diberi dukungan.</td>
+          </tr>
+          <tr>
+            <td><b>Penalaran kritis</b><br>(alasan dan bukti)</td>
+            <td>Alasan spesifik, memakai beberapa fakta, membedakan fakta/dugaan, dan mempertimbangkan keterkaitan.</td>
+            <td>Alasan masuk akal dan merujuk minimal satu fakta.</td>
+            <td>Alasan masih umum atau bukti kurang sesuai.</td>
+            <td>Tidak memberi alasan/bukti atau kesimpulan tidak terkait informasi.</td>
+          </tr>
+          <tr>
+            <td><b>Refleksi</b><br>(exit ticket)</td>
+            <td>Mengidentifikasi kesulitan spesifik, menjelaskan penyebab, dan menetapkan strategi berikutnya.</td>
+            <td>Menyebutkan kesulitan dan alasan yang cukup jelas.</td>
+            <td>Menyebutkan kesulitan tetapi alasan/strategi masih samar.</td>
+            <td>Jawaban kosong/tidak terkait meski sudah diberi pilihan cara menjawab.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="lead f" style="margin-top:12px; font-size:17px;">
+        <b>Penggunaan skor:</b> catat skor tiap aspek secara terpisah agar guru mengetahui kebutuhan belajar. Jika diperlukan nilai gabungan, sekolah dapat menetapkan bobot sesuai kebijakan asesmen satuan pendidikan.
+      </p>
+    </div>
+    <div class="timeTag">⏱ 5 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 45 : LEMBAR OBSERVASI ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Asesmen • Observasi</span>
+      <h2 class="title">Lembar Observasi Kolaborasi (Cek Cepat)</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <table>
+        <thead><tr><th>Nama murid</th><th>Berbagi peran</th><th>Mendengar pendapat</th><th>Berkontribusi pada peta</th><th>Catatan bukti</th></tr></thead>
+        <tbody>
+          <tr><td>_______________</td><td>☐ Ya ☐ Dengan arahan ☐ Belum</td><td>☐ Ya ☐ Dengan arahan ☐ Belum</td><td>☐ Ya ☐ Dengan arahan ☐ Belum</td><td></td></tr>
+          <tr><td>_______________</td><td>☐ Ya ☐ Dengan arahan ☐ Belum</td><td>☐ Ya ☐ Dengan arahan ☐ Belum</td><td>☐ Ya ☐ Dengan arahan ☐ Belum</td><td></td></tr>
+          <tr><td>_______________</td><td>☐ Ya ☐ Dengan arahan ☐ Belum</td><td>☐ Ya ☐ Dengan arahan ☐ Belum</td><td>☐ Ya ☐ Dengan arahan ☐ Belum</td><td></td></tr>
+          <tr><td>_______________</td><td>☐ Ya ☐ Dengan arahan ☐ Belum</td><td>☐ Ya ☐ Dengan arahan ☐ Belum</td><td>☐ Ya ☐ Dengan arahan ☐ Belum</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="timeTag">⏱ 4 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 46 : DIMENSI PROFIL LULUSAN ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Dimensi Profil Lulusan dan Kompetensi 6C</span>
+      <h2 class="title">Dimensi yang Ditargetkan</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <table>
+        <thead><tr><th style="width:26%;">Dimensi</th><th style="width:12%;">Status</th><th>Keterangan</th></tr></thead>
+        <tbody>
+          <tr><td>Keimanan dan Ketakwaan</td><td class="c">☐</td><td>Tidak menjadi fokus asesmen khusus; nilai kejujuran dan tanggung jawab dapat dikuatkan secara kontekstual.</td></tr>
+          <tr><td>Kewargaan</td><td class="c">☐</td><td>Menghargai kepentingan bersama dalam penggunaan fasilitas sekolah.</td></tr>
+          <tr><td><b>Penalaran Kritis</b></td><td class="c" style="color:var(--accent);">☒</td><td>Memilah fakta, mengurai masalah, dan memberi alasan.</td></tr>
+          <tr><td><b>Kreativitas</b></td><td class="c" style="color:var(--accent);">☒</td><td>Menyajikan peta dengan pengelompokan/visual yang dapat dipahami.</td></tr>
+          <tr><td><b>Kolaborasi</b></td><td class="c" style="color:var(--accent);">☒</td><td>Berbagi peran dan membangun kesepakatan.</td></tr>
+          <tr><td><b>Kemandirian</b></td><td class="c" style="color:var(--accent);">☒</td><td>Memantau pemahaman dan mengisi refleksi.</td></tr>
+          <tr><td>Kesehatan</td><td class="c">☐</td><td>Bukan sasaran utama; keselamatan dan kenyamanan ruang tetap diperhatikan.</td></tr>
+          <tr><td><b>Komunikasi</b></td><td class="c" style="color:var(--accent);">☒</td><td>Menjelaskan peta, alasan, dan tanggapan secara santun.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="timeTag">⏱ 3 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 47 : PENGUATAN 6C ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Kompetensi 6C &amp; Olah</span>
+      <h2 class="title">Penguatan 6C dan Integrasi Olah</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <div class="grid g3 f" style="margin-bottom:14px;">
+        <div class="card"><h3>Character</h3><p>Tanggung jawab dan kejujuran terhadap bukti.</p></div>
+        <div class="card blue"><h3>Citizenship</h3><p>Kepedulian pada fasilitas bersama.</p></div>
+        <div class="card gold"><h3>Critical Thinking</h3><p>Analisis fakta.</p></div>
+        <div class="card pink"><h3>Creativity</h3><p>Bentuk peta.</p></div>
+        <div class="card"><h3>Collaboration</h3><p>Kerja tim.</p></div>
+        <div class="card blue"><h3>Communication</h3><p>Presentasi dan umpan balik.</p></div>
+      </div>
+      <div class="card gold f">
+        <h3>🧠 Integrasi Olah</h3>
+        <p>Olah pikir melalui analisis dan pengelompokan; olah hati melalui kejujuran pada fakta, tanggung jawab, dan empati; olah rasa melalui apresiasi serta mendengar perspektif; olah raga secara proporsional melalui aktivitas mengambil/menempel kartu dan merapikan ruang, dengan alternatif bagi murid yang membutuhkan.</p>
+      </div>
+    </div>
+    <div class="timeTag">⏱ 3 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 48 : REFLEKSI GURU ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Refleksi Guru</span>
+      <h2 class="title">Refleksi Setelah Pembelajaran</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <ul class="bullets">
+        <li class="f">☐ Apakah masalah pemantik dekat dengan pengalaman murid dan dapat dipahami tanpa pengetahuan TIK sebelumnya?</li>
+        <li class="f">☐ Siapa yang mampu membedakan fakta dari dugaan? Siapa yang memerlukan contoh tambahan?</li>
+        <li class="f">☐ Apakah semua murid memperoleh peran dan cara berpartisipasi yang sesuai?</li>
+        <li class="f">☐ Apakah peta murid menunjukkan submasalah yang relevan, tidak berulang, dan terhubung dengan masalah utama?</li>
+        <li class="f">☐ Bagian alur mana yang memerlukan waktu lebih lama? Apakah alokasi 80 menit realisnis?</li>
+        <li class="f">☐ Apa yang perlu diperbaiki pada kartu kasus, instruksi, aksesibilitas, atau pengelompokan untuk pertemuan berikutnya?</li>
+        <li class="f">☐ Apakah LKPD interaktif berjalan lancar? Apakah ada kendala teknis yang perlu diatasi?</li>
+      </ul>
+    </div>
+    <div class="timeTag">⏱ 3 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 49 : REFLEKSI MURID ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Refleksi Murid</span>
+      <h2 class="title">Refleksi Murid</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <div class="card blue f" style="margin-bottom:12px;">
+        <h3>📝 Saya dapat menjelaskan dekomposisi dengan kata-kata sendiri</h3>
+        <p>ya / masih berlatih</p>
+      </div>
+      <div class="card gold f" style="margin-bottom:12px;">
+        <h3>💡 Strategi yang paling membantu saya</h3>
+        <p>membaca kartu / berdiskusi / menggambar peta / mendengar penjelasan / bermain LKPD interaktif / lainnya: ____________</p>
+      </div>
+      <div class="card pink f" style="margin-bottom:12px;">
+        <h3>❓ Bagian tersulit dan alasannya</h3>
+        <p>saya tulis pada exit ticket.</p>
+      </div>
+      <div class="card f">
+        <h3>🚀 Saya akan menggunakan cara memecah masalah ini ketika</h3>
+        <p>____________</p>
+      </div>
+    </div>
+    <div class="timeTag">⏱ 3 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 50 : TINDAK LANJUT ================= -->
+  <section class="slide">
+    <div class="head">
+      <span class="eyebrow">Tindak Lanjut</span>
+      <h2 class="title">Remedial, Pengayaan, dan Jembatan</h2>
+    </div>
+    <div class="scrollable" style="flex:1;">
+      <div class="card gold f" style="margin-bottom:12px;">
+        <h3>🛠️ Remedial / Penguatan</h3>
+        <p>Gunakan kasus piket dengan tiga kartu, peta bercabang setengah jadi, dan bimbingan pertanyaan satu per satu. Minta murid melengkapi minimal tiga submasalah serta menyebutkan satu bukti. Arahkan murid untuk mengulang Level 1–2 di LKPD interaktif dengan Mode Latihan.</p>
+      </div>
+      <div class="card blue f" style="margin-bottom:12px;">
+        <h3>🌟 Pengayaan</h3>
+        <p>Murid mengumpulkan data sederhana (misalnya menghitung jumlah pembeli pada interval waktu atau memetakan alur piket), lalu memperbaiki peta berdasarkan data; jangan mengumpulkan data pribadi yang tidak diperlukan. Arahkan murid untuk mencoba Mode Tantangan atau Mode Guru (membuat soal sendiri).</p>
+      </div>
+      <div class="card pink f">
+        <h3>🌉 Jembatan ke Pertemuan Selanjutnya</h3>
+        <p>Setelah masalah diuraikan, murid dapat mencari pola, menentukan informasi penting, dan menyusun langkah penyelesaian secara runtut. Level 5 (Pola Dekomposisi) dalam LKPD interaktif menjadi jembatan langsung ke materi pengenalan pola.</p>
+      </div>
+    </div>
+    <div class="timeTag">⏱ 3 menit</div>
+  </section>
+
+  <!-- ================= SLIDE 51 : PENUTUP ================= -->
   <section class="slide">
     <div class="closing">
       <span class="eyebrow">Penutup</span>
-      <h1 class="title grad" style="font-size:58px;">Masalah Besar =<br>Kumpulan Masalah Kecil</h1>
+      <h1 class="title grad" style="font-size:56px;">Masalah Besar =<br>Kumpulan Masalah Kecil</h1>
       <p class="motiv f">Memecah = langkah pertama menyelesaikan 💪</p>
       <p class="lead f">Terima kasih! Sampai jumpa di Pertemuan berikutnya! 🚀</p>
       <div class="idCard f">
@@ -726,7 +1489,7 @@ td.c{text-align:center; font-weight:800; color:var(--accent);}
 
   <!-- ================= HUD ================= -->
   <div id="hud">
-    <div id="counter">1 / 18</div>
+    <div id="counter">1 / 51</div>
     <div id="ctrl">
       <button id="btnPrev" class="ctrl" title="Sebelumnya (←)">◀</button>
       <button id="btnNext" class="ctrl" title="Berikutnya (→)">▶</button>
@@ -803,7 +1566,6 @@ td.c{text-align:center; font-weight:800; color:var(--accent);}
     if(cur > 0){
       cur--;
       render();
-      // tampilkan seluruh fragmen slide sebelumnya agar konteks terlihat
       frags(slides[cur]).forEach(f => f.classList.add('show'));
     }
   }
@@ -847,7 +1609,7 @@ td.c{text-align:center; font-weight:800; color:var(--accent);}
 
   /* ---------- start ---------- */
   render();
-  setTimeout(()=>{ if(cur===0) hint.classList.remove('hide'); }, 400);
+  setTimeout(()=>{ if(cur===0) hint.classList.remove('hint'); if(cur===0) hint.classList.remove('hide'); }, 400);
 })();
 </script>
 </body>
