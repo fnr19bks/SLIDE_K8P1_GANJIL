@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Informatika K8 P1 — Berpikir Komputasional</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/theme/white.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B3C5D;
+    --navy-dark:#062a41;
+    --orange:#F2A104;
+    --gold:#FFD166;
+    --tosca:#2EC4B6;
+    --tosca-light:#7FE7DC;
+    --red:#E4572E;
+    --green:#38B000;
+    --bg:#F7F9FB;
+    --text:#12263A;
+  }
+
+  .reveal{font-family:'Open Sans',sans-serif;color:var(--text);}
+  .reveal h1,.reveal h2,.reveal h3{
+    font-family:'Montserrat',sans-serif;
+    color:var(--navy);
+    text-transform:none;
+  }
+  .reveal h1{font-size:44pt;}
+  .reveal h2{font-size:38pt;}
+  .reveal h3{font-size:30pt;}
+
+  /* Background default untuk slide biasa */
+  .reveal .slides section{
+    background:var(--bg);
+    padding:40px;
+    box-sizing:border-box;
+    height:100%;
+  }
+
+  .reveal ul{font-size:24pt;line-height:1.5;}
+  .reveal li{margin-bottom:12px;}
+  .reveal .slide-number{background:var(--navy);color:#fff;}
+
+  .header-bar{
+    position:absolute;top:0;left:0;right:0;height:14px;
+    background:linear-gradient(90deg,var(--navy),var(--tosca),var(--orange));
+  }
+
+  .badge{
+    display:inline-block;background:var(--orange);color:#fff;
+    padding:6px 16px;border-radius:20px;font-size:18pt;font-weight:600;
+  }
+
+  .card{
+    background:#fff;border-left:8px solid var(--tosca);
+    padding:20px 28px;border-radius:12px;
+    box-shadow:0 4px 14px rgba(0,0,0,.08);text-align:left;
+  }
+  .card.red{border-left-color:var(--red);}
+  .card.green{border-left-color:var(--green);}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px;font-size:22pt;}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;font-size:20pt;}
+
+  .pill{
+    background:#fff;border-radius:16px;padding:18px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+  }
+
+  .footer{
+    position:absolute;bottom:16px;left:40px;right:40px;
+    display:flex;justify-content:space-between;
+    font-size:16pt;color:#666;
+  }
+
+  /* ============================================================
+     FIX UTAMA: SLIDE 1 & 18 — specificity dinaikkan + !important
+     ============================================================ */
+  .reveal .slides section.title-slide{
+    display:flex !important;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    height:100%;
+    background:linear-gradient(135deg, #062a41 0%, #0B3C5D 50%, #134f75 100%) !important;
+    color:#FFFFFF;
+    padding:60px 80px;
+  }
+
+  /* Semua heading di title-slide: warna emas/tosca cerah, BUKAN putih polos */
+  .reveal .slides section.title-slide h1{
+    color:#FFD166 !important;
+    text-shadow:0 3px 12px rgba(0,0,0,.4);
+    margin:10px 0;
+  }
+  .reveal .slides section.title-slide h2{
+    color:#7FE7DC !important;
+    text-shadow:0 2px 8px rgba(0,0,0,.35);
+    margin:8px 0;
+    font-weight:600;
+  }
+  .reveal .slides section.title-slide h3{
+    color:#FFD166 !important;
+  }
+
+  .reveal .slides section.title-slide p{
+    color:#F7F9FB !important;
+    text-shadow:0 1px 6px rgba(0,0,0,.3);
+    margin:10px 0;
+  }
+
+  /* Aksen kecil: label kuning di atas judul */
+  .reveal .slides section.title-slide .label-top{
+    display:inline-block;
+    background:rgba(255,209,102,.15);
+    border:2px solid #FFD166;
+    color:#FFD166 !important;
+    padding:8px 22px;
+    border-radius:30px;
+    font-family:'Montserrat',sans-serif;
+    font-size:20pt;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-bottom:24px;
+  }
+
+  /* Garis dekoratif */
+  .reveal .slides section.title-slide .divider{
+    width:80px;height:4px;background:#2EC4B6;
+    margin:24px auto;border-radius:2px;
+  }
+
+  .emoji{font-size:48pt;}
+  .timer{font-family:'Montserrat';font-size:64pt;color:var(--orange);font-weight:700;}
+
+  .reveal .fragment.fade-up{transform:translateY(20px);}
+  .reveal .fragment.fade-up.visible{transform:translateY(0);}
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ============ SLIDE 1 (DIPERBAIKI) ============ -->
+<section class="title-slide" data-transition="zoom">
+  <div class="header-bar"></div>
+  <span class="label-top">INFORMATIKA • KELAS 8 • FASE D</span>
+  <h1 style="font-size:52pt;">Berpikir Komputasional</h1>
+  <h2 style="font-size:32pt;font-weight:400;">Memecah Masalah Kompleks</h2>
+  <div class="divider"></div>
+  <p style="font-size:20pt;opacity:.95;margin-top:20px;">
+    Tim MGMP Informatika<br>
+    SMP Negeri 19 Kota Bekasi
+  </p>
+</section>
+
+<!-- SLIDE 2 -->
+<section data-transition="slide">
+  <div class="header-bar"></div>
+  <h2>Tujuan Pembelajaran Hari Ini</h2>
+  <div class="grid4" style="margin-top:40px;">
+    <div class="pill fragment fade-up">🔍<br><b>Identifikasi</b><br>masalah utama</div>
+    <div class="pill fragment fade-up">✂️<br><b>Pecah</b><br>jadi 3 submasalah</div>
+    <div class="pill fragment fade-up">🔗<br><b>Jelaskan</b><br>hubungan antar bagian</div>
+    <div class="pill fragment fade-up">🗺️<br><b>Susun</b><br>peta dekomposisi</div>
+  </div>
+  <p class="fragment fade-up" style="margin-top:40px;font-size:22pt;text-align:center;color:var(--tosca);">✨ Hari ini kita jadi <b>detektif masalah</b>, bukan hakim!</p>
+  <div class="footer"><span>Slide 2</span><span>~2 menit</span></div>
+</section>
+
+<!-- SLIDE 3 -->
+<section data-transition="slide">
+  <div class="header-bar"></div>
+  <h2>Pertanyaan Pemantik</h2>
+  <ul style="margin-top:30px;">
+    <li class="fragment fade-up">Pernah menunggu lama di kantin?</li>
+    <li class="fragment fade-up">Apa penyebab antrean panjang?</li>
+    <li class="fragment fade-up">Apakah hanya karena "murid malas"?</li>
+    <li class="fragment fade-up">Informasi apa yang perlu dicari dulu?</li>
+  </ul>
+  <div class="card fragment fade-up" style="margin-top:30px;background:#fff8e6;">
+    <b>💡 Think-Pair-Share:</b> 30 detik berpikir → 30 detik diskusi pasangan → berbagi!
+  </div>
+  <div class="footer"><span>Slide 3</span><span>~3 menit</span></div>
+</section>
+
+<!-- SLIDE 4 -->
+<section data-transition="slide">
+  <div class="header-bar"></div>
+  <h2>Apa Itu Berpikir Komputasional?</h2>
+  <div class="grid4" style="margin-top:40px;">
+    <div class="pill fragment fade-up" style="border:3px solid var(--orange);background:#fff8e6;">🧩<br><b>Dekomposisi</b><br><small>Pecah masalah</small></div>
+    <div class="pill fragment fade-up">🔁<br><b>Pola</b><br><small>Cari kesamaan</small></div>
+    <div class="pill fragment fade-up">🎯<br><b>Abstraksi</b><br><small>Ambil inti</small></div>
+    <div class="pill fragment fade-up">📋<br><b>Algoritma</b><br><small>Susun langkah</small></div>
+  </div>
+  <p class="fragment fade-up" style="margin-top:40px;font-size:22pt;text-align:center;">Hari ini kita fokus pada <span class="badge">DEKOMPOSISI</span></p>
+  <div class="footer"><span>Slide 4</span><span>~3 menit</span></div>
+</section>
+
+<!-- SLIDE 5 -->
+<section data-transition="convex">
+  <div class="header-bar"></div>
+  <h2>Fokus: Dekomposisi</h2>
+  <div style="display:flex;align-items:center;justify-content:center;gap:40px;margin-top:40px;">
+    <div class="card fragment fade-up" style="font-size:26pt;background:#fff3d6;border-left-color:var(--orange);">😰 MASALAH<br>BESAR</div>
+    <div class="fragment fade-up" style="font-size:48pt;">✂️ →</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div class="pill fragment fade-up">🔹 Bagian 1</div>
+      <div class="pill fragment fade-up">🔹 Bagian 2</div>
+      <div class="pill fragment fade-up">🔹 Bagian 3</div>
+      <div class="pill fragment fade-up">🔹 Bagian 4</div>
+    </div>
+  </div>
+  <p class="fragment fade-up" style="margin-top:40px;font-size:22pt;text-align:center;color:var(--tosca);">🍚 "Makan nasi sepiring tidak sekali suap"</p>
+  <div class="footer"><span>Slide 5</span><span>~3 menit</span></div>
+</section>
+
+<!-- SLIDE 6 -->
+<section data-transition="slide">
+  <div class="header-bar"></div>
+  <h2>Analogi: Piket Kelas</h2>
+  <div style="text-align:center;margin-top:30px;">
+    <div class="pill fragment fade-up" style="display:inline-block;background:var(--navy);color:#fff;font-size:26pt;">🧹 PIKET KELAS</div>
+    <div class="fragment fade-up" style="font-size:36pt;margin:20px 0;">↓</div>
+    <div class="grid4">
+      <div class="pill fragment fade-up">🧹<br>Menyapu</div>
+      <div class="pill fragment fade-up">🪣<br>Mengepel</div>
+      <div class="pill fragment fade-up">🗑️<br>Buang sampah</div>
+      <div class="pill fragment fade-up">📚<br>Merapikan</div>
+    </div>
+  </div>
+  <p class="fragment fade-up" style="margin-top:30px;font-size:22pt;text-align:center;color:var(--tosca);">✅ Selesai lebih cepat & rapi!</p>
+  <div class="footer"><span>Slide 6</span><span>~4 menit</span></div>
+</section>
+
+<!-- SLIDE 7 -->
+<section data-transition="slide">
+  <div class="header-bar"></div>
+  <h2>Kasus: Antrean Kantin Sekolah</h2>
+  <div class="grid2" style="margin-top:20px;">
+    <div>
+      <ul style="font-size:22pt;">
+        <li class="fragment fade-up">Bel istirahat berbunyi bersamaan</li>
+        <li class="fragment fade-up">Memilih makanan di depan etalase</li>
+        <li class="fragment fade-up">Barisan melebar, halangi jalur keluar</li>
+        <li class="fragment fade-up">Pembayaran di satu titik saat ramai</li>
+        <li class="fragment fade-up">Waktu istirahat terbatas</li>
+        <li class="fragment fade-up">Belum ada data waktu tunggu</li>
+      </ul>
+    </div>
+    <div class="card fragment fade-up" style="background:#fff3d6;">
+      <div class="emoji">🏫🍽️</div>
+      <p style="font-size:22pt;"><b>Bayangkan kamu paling belakang…</b></p>
+      <p style="font-size:20pt;">Apa yang kamu rasakan? Apa yang kamu butuhkan?</p>
+    </div>
+  </div>
+  <div class="footer"><span>Slide 7</span><span>~4 menit</span></div>
+</section>
+
+<!-- SLIDE 8 -->
+<section data-transition="slide">
+  <div class="header-bar"></div>
+  <h2>Kartu Masalah: Aturan Main</h2>
+  <ul style="font-size:24pt;">
+    <li class="fragment fade-up">Setiap kelompok menerima kartu fakta</li>
+    <li class="fragment fade-up">Kartu berisi informasi kasus</li>
+    <li class="fragment fade-up">Tandai fakta, <b>bukan</b> dugaan</li>
+    <li class="fragment fade-up">Diskusikan bersama kelompok</li>
+    <li class="fragment fade-up">Tulis hasil di LKPD</li>
+  </ul>
+  <div class="card fragment fade-up" style="margin-top:30px;background:#e6f9f7;">
+    <b>⚠️ Ingat:</b> Jangan menambah dugaan seolah-olah fakta!
+  </div>
+  <div class="footer"><span>Slide 8</span><span>~4 menit</span></div>
+</section>
+
+<!-- SLIDE 9 -->
+<section data-transition="slide">
+  <div class="header-bar"></div>
+  <h2>Tugas Kelompok Hari Ini</h2>
+  <div class="grid4" style="margin-top:30px;">
+    <div class="pill fragment fade-up">👥<br><b>3–4 orang</b></div>
+    <div class="pill fragment fade-up">🎭<br><b>Pilih peran</b><br><small>pembaca, pencatat, penyaji</small></div>
+    <div class="pill fragment fade-up">⏱️<br><b>25 menit</b><br><small>diskusi</small></div>
+    <div class="pill fragment fade-up">🗺️<br><b>Hasil:</b><br><small>peta dekomposisi</small></div>
+  </div>
+  <p class="fragment fade-up" style="text-align:center;font-size:26pt;margin-top:40px;color:var(--orange);">Minimal <b>3 submasalah</b> relevan!</p>
+  <div class="footer"><span>Slide 9</span><span>~2 menit</span></div>
+</section>
+
+<!-- SLIDE 10 -->
+<section data-transition="slide">
+  <div class="header-bar"></div>
+  <h2>Cara Membuat Peta Dekomposisi</h2>
+  <ol style="font-size:24pt;">
+    <li class="fragment fade-up">Tulis masalah utama di tengah</li>
+    <li class="fragment fade-up">Pecah jadi 3–4 submasalah</li>
+    <li class="fragment fade-up">Hubungkan dengan garis/panah</li>
+    <li class="fragment fade-up">Beri label yang jelas</li>
+    <li class="fragment fade-up">Pilih 1 prioritas + alasan</li>
+  </ol>
+  <div class="footer"><span>Slide 10</span><span>~4 menit</span></div>
+</section>
+
+<!-- SLIDE 11 -->
+<section data-transition="slide">
+  <div class="header-bar"></div>
+  <h2>Contoh: Peta Antrean Kantin</h2>
+  <div style="text-align:center;margin-top:20px;">
+    <div class="pill fragment fade-up" style="display:inline-block;background:var(--navy);color:#fff;font-size:24pt;">😰 ANTREAN PANJANG & MEMBINGUNGKAN</div>
+    <div class="fragment fade-up" style="font-size:32pt;margin:10px 0;">↓</div>
+    <div class="grid4" style="font-size:18pt;">
+      <div class="pill fragment fade-up">🚪<br><b>Alur ruang</b><br>masuk/keluar</div>
+      <div class="pill fragment fade-up">🍱<br><b>Proses memilih</b><br>info menu</div>
+      <div class="pill fragment fade-up">💳<br><b>Pembayaran</b><br>titik bayar</div>
+      <div class="pill fragment fade-up">⏰<br><b>Waktu</b><br>kedatangan</div>
+    </div>
+    <p class="fragment fade-up" style="margin-top:20px;font-size:20pt;color:var(--tosca);">+ Informasi: tanda antrean, arahan petugas</p>
+  </div>
+  <div class="footer"><span>Slide 11</span><span>~4 menit</span></div>
+</section>
+
+<!-- SLIDE 12 -->
+<section data-transition="slide">
+  <div class="header-bar"></div>
+  <h2>Waktunya Bekerja! 🚀</h2>
+  <div class="grid2" style="margin-top:20px;">
+    <div>
+      <ul style="font-size:22pt;">
+        <li class="fragment fade-up">Diskusi kelompok 25 menit</li>
+        <li class="fragment fade-up">Gambar peta di kertas A3</li>
+        <li class="fragment fade-up">Tulis nama anggota</li>
+        <li class="fragment fade-up">Siapkan presentasi 60–90 detik</li>
+        <li class="fragment fade-up">Periksa: ada tumpang tindih?</li>
+      </ul>
+    </div>
+    <div class="pill fragment fade-up" style="text-align:center;background:var(--navy);color:#fff;">
+      <div class="timer" style="color:var(--orange);">25:00</div>
+      <p style="font-size:20pt;">Mulai bersama: 3… 2… 1… GO!</p>
+    </div>
+  </div>
+  <div class="footer"><span>Slide 12</span><span>~25 menit</span></div>
+</section>
+
+<!-- SLIDE 13 -->
+<section data-transition="slide">
+  <div class="header-bar"></div>
+  <h2>Berbagi Hasil</h2>
+  <ul style="font-size:24pt;">
+    <li class="fragment fade-up">2–3 kelompok presentasi</li>
+    <li class="fragment fade-up">1 menit per kelompok</li>
+    <li class="fragment fade-up">Kelompok lain beri tanggapan</li>
+    <li class="fragment fade-up">1 apresiasi + 1 pertanyaan/saran</li>
+    <li class="fragment fade-up">Soroti variasi pengelompokan</li>
+  </ul>
+  <div class="grid2 fragment fade-up" style="margin-top:30px;">
+    <div class="card green" style="text-align:center;">👏 <b>Apresiasi</b><br>Apa yang sudah bagus?</div>
+    <div class="card" style="text-align:center;border-left-color:var(--orange);">💡 <b>Saran</b><br>Apa yang bisa ditambah?</div>
+  </div>
+  <div class="footer"><span>Slide 13</span><span>~10 menit</span></div>
+</section>
+
+<!-- SLIDE 14 -->
+<section data-transition="slide">
+  <div class="header-bar"></div>
+  <h2>Cek Pemahaman — Kuis Cepat</h2>
+  <div class="grid2" style="margin-top:20px;">
+    <div>
+      <ol style="font-size:22pt;">
+        <li class="fragment fade-up">Apa itu dekomposisi?</li>
+        <li class="fragment fade-up">Mengapa bedakan fakta & dugaan?</li>
+        <li class="fragment fade-up">Sebutkan 3 submasalah "kelas kotor"</li>
+      </ol>
+    </div>
+    <div class="pill fragment fade-up" style="text-align:center;background:#fff8e6;border:3px dashed var(--orange);">
+      <div class="emoji">🤔</div>
+      <p style="font-size:22pt;">Jawab dengan jari 1–3!</p>
+      <p style="font-size:18pt;">Semua angkat tangan, ya!</p>
+    </div>
+  </div>
+  <div class="footer"><span>Slide 14</span><span>~5 menit</span></div>
+</section>
+
+<!-- SLIDE 15 -->
+<section data-transition="slide">
+  <div class="header-bar"></div>
+  <h2>Tips & Kesalahan Umum</h2>
+  <div class="grid2" style="margin-top:20px;font-size:22pt;">
+    <div class="card red fragment fade-up">
+      <b>❌ HINDARI</b>
+      <ul style="font-size:20pt;margin-top:10px;">
+        <li>Submasalah terlalu besar</li>
+        <li>Saling tumpang tindih</li>
+        <li>Lupa masalah utama</li>
+        <li>Menyalahkan orang tanpa bukti</li>
+      </ul>
+    </div>
+    <div class="card green fragment fade-up">
+      <b>✅ LAKUKAN</b>
+      <ul style="font-size:20pt;margin-top:10px;">
+        <li>Logis & jelas</li>
+        <li>Didukung fakta</li>
+        <li>Setiap bagian bisa ditindaklanjuti</li>
+        <li>Bisa dijelaskan ke orang lain</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer"><span>Slide 15</span><span>~4 menit</span></div>
+</section>
+
+<!-- SLIDE 16 -->
+<section data-transition="slide">
+  <div class="header-bar"></div>
+  <h2>Refleksi & Exit Ticket</h2>
+  <div class="grid2" style="margin-top:20px;">
+    <div>
+      <ul style="font-size:22pt;">
+        <li class="fragment fade-up">Apa hal baru yang dipelajari?</li>
+        <li class="fragment fade-up">Bagian mana paling sulit?</li>
+        <li class="fragment fade-up">Mengapa itu sulit?</li>
+        <li class="fragment fade-up">Di mana bisa dipakai?</li>
+      </ul>
+    </div>
+    <div class="pill fragment fade-up" style="text-align:center;background:#fff8e6;">
+      <p style="font-size:20pt;">Seberapa paham?</p>
+      <div style="font-size:36pt;">😕 😐 😀 😄 🤩</div>
+      <p style="font-size:18pt;">1 &nbsp; 2 &nbsp; 3 &nbsp; 4 &nbsp; 5</p>
+    </div>
+  </div>
+  <div class="footer"><span>Slide 16</span><span>~5 menit</span></div>
+</section>
+
+<!-- SLIDE 17 -->
+<section data-transition="slide">
+  <div class="header-bar"></div>
+  <h2>Asesmen & Tindak Lanjut</h2>
+  <ul style="font-size:22pt;">
+    <li class="fragment fade-up">Formatif: observasi + peta dekomposisi</li>
+    <li class="fragment fade-up">Sumatif: peta + kuis + exit ticket</li>
+    <li class="fragment fade-up">Rubrik skala 1–4 (5 aspek)</li>
+    <li class="fragment fade-up">Penguatan: kasus piket, 3 kartu</li>
+    <li class="fragment fade-up">Pengayaan: kumpulkan data waktu</li>
+    <li class="fragment fade-up">Lanjut: pola, abstraksi, algoritma</li>
+  </ul>
+  <div class="footer"><span>Slide 17</span><span>~4 menit</span></div>
+</section>
+
+<!-- ============ SLIDE 18 (DIPERBAIKI) ============ -->
+<section class="title-slide" data-transition="zoom">
+  <div class="header-bar"></div>
+  <span class="label-top">PENUTUP</span>
+  <h1 style="font-size:44pt;">Masalah Besar =<br>Kumpulan Masalah Kecil</h1>
+  <div class="divider"></div>
+  <p style="font-size:26pt;">Memecah = langkah pertama menyelesaikan 💪</p>
+  <p style="font-size:22pt;margin-top:30px;">Terima kasih! Sampai jumpa di Pertemuan berikutnya! 🚀</p>
+  <p style="font-size:18pt;opacity:.85;margin-top:20px;">
+    Tim MGMP Informatika • SMP Negeri 19 Kota Bekasi
+  </p>
+</section>
+
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    controls: true,
+    progress: true,
+    center: false,
+    width: 1280,
+    height: 720,
+    margin: 0.05,
+    minScale: 0.2,
+    maxScale: 2.0
+  });
+</script>
+</body>
+</html>
